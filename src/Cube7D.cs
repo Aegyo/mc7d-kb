@@ -341,6 +341,23 @@ namespace _3dedit {
             for(int i=0;i<NC;i++) Cube[i]=Cube2[i];
         }
 
+        public void HighLightGrip()
+        {
+            int f0 = Gripped[0]-1, m0 = reverse(Gripped[1]);
+            if (f0 < 0) return;
+
+            HighLighted.SetAll(false);
+            int m1 = 1 << (N - 1);
+            int m = (m0 & 1) + (m0 << 1) + ((m0 & m1) << 2);
+            int c0 = Pow(N2, f0);
+            for (int i = 0; i < NC; i++)
+            {
+                int k = (i / c0) % N2;
+                if ((m & (1 << k)) == 0) continue;
+                HighLighted[i] = true;
+            }
+        }
+
         internal int GetFirstSticker(int s,int ClickMode,out int F1) {  // returns FaceClick
             F1=0;
             if(s<0 || s>=StkMap.Length) { System.Windows.Forms.MessageBox.Show("Error in GetFirstSticker: s="+s); return 0; }

@@ -1787,6 +1787,15 @@ namespace _3dedit
             {
                 int[] toGrip = faces[gripBinds[key]];
                 Cube.Grip(toGrip[0], toGrip[1]);
+                Cube.HighLightGrip();
+                if (Cube.Gripped[0] < 0)
+                {
+                    if (cb_HighlightByColors.CheckState != CheckState.Unchecked)
+                        Cube.FindStickersByMask(FaceMask, cb_HighlightByColors.CheckState == CheckState.Checked);
+                    else Cube.HighlightAll();
+                    Redraw();
+                }
+                Redraw();
             }
 
             if (twistBinds.ContainsKey(key) && Cube.Gripped[0] != -1)
