@@ -177,6 +177,7 @@ namespace _3dedit
             for(int i=0;i<8;i++) NColMask[i]=true;
             for(int i=0;i<15;i++) FaceMask[i]=0;
             LoadSettings("MC7D_settings.txt");
+            LoadKeybinds("MC7D_keybinds.txt");
             Macros=new CMacroFile(GetDim(),GetSize());
             m_Timer=new System.Threading.Timer(this.UpdateTime,null,0,117);
 		}
@@ -1640,9 +1641,10 @@ namespace _3dedit
             mi_PuzzleSize5.Checked=(n==5);
         }
 
-        static int X = 2, Y = 4, Z = 3, W = 1, V = 5;
+        static readonly int X = 2, Y = 4, Z = 3, W = 1, V = 5;
+
         // Facet -> [axis, layer mask]
-        static Dictionary<char, int[]> faces = new Dictionary<char, int[]>
+        Dictionary<char, int[]> faces = new Dictionary<char, int[]>
             {
                 { 'I', new int[] { W, 1 } },
                 { 'O', new int[] { W, 4 } },
@@ -1656,7 +1658,7 @@ namespace _3dedit
                 { 'P', new int[] { V, 4 } }
             };
         // KeyChar -> Facet
-        static Dictionary<char, char> gripBinds = new Dictionary<char, char>
+        Dictionary<char, char> gripBinds = new Dictionary<char, char>
             {
                 { 'D', 'I' },
                 { 'V', 'O' },
@@ -1672,7 +1674,7 @@ namespace _3dedit
 
 
         // KeyChar -> Rotation Plane
-        static Dictionary<char, int[]> twistBinds = new Dictionary<char, int[]>
+        Dictionary<char, int[]> twistBinds = new Dictionary<char, int[]>
             {
                 { 'J', new int[] { X, Z } },
                 { 'L', new int[] { Z, X } },
@@ -1709,6 +1711,8 @@ namespace _3dedit
         
         int TwistMask;     // pressed 1-5
         bool RotateCube;   // pressed Ctrl
+
+        Keybindings Keybinds;
 
         bool AltHighlight=false;
         bool[] NColMask;
@@ -1782,33 +1786,13 @@ namespace _3dedit
 
         private void KeyPressEvt(object sender, KeyPressEventArgs e)
         {
-            char key = char.ToUpper(e.KeyChar);
+            string key = char.ToUpper(e.KeyChar).ToString();
+            var action = Keybinds.GetAction(key);
 
-            if (twistBinds.ContainsKey(key) && Cube.Gripped[0] != -1)
+            if (action == null) return;
+
+            if (action.OnKeyPress(ref Cube))
             {
-                int[] twist = twistBinds[key];
-                int from = twist[0];
-                int to = twist[1];
-                bool flip = false;
-
-                if (Cube.Gripped[0] == from)
-                {
-                    from = Cube.Gripped[0] == W ? V : W;
-                    flip = true;
-                }
-                if (Cube.Gripped[0] == to)
-                {
-                    to = Cube.Gripped[0] == W ? V : W;
-                    flip = true;
-                }
-                if (flip && Cube.Gripped[1] == 1)
-                {
-                    int tmp = from;
-                    from = to;
-                    to = tmp;
-                }
-
-                Cube.TwistGrip(from, to);
                 ProcessHighLights();
                 Redraw();
             }
@@ -1816,12 +1800,13 @@ namespace _3dedit
 
         private void KeyDownEvt(object sender, KeyEventArgs e)
         {
-            char key = (char)e.KeyValue;
+            string key = ((char)e.KeyValue).ToString();
+            var action = Keybinds.GetAction(key);
 
-            if (gripBinds.ContainsKey(key) && Cube.Gripped[0] == -1)
+            if (action == null) return;
+
+            if (action.OnKeyDown(ref Cube))
             {
-                int[] toGrip = faces[gripBinds[key]];
-                Cube.Grip(toGrip[0], toGrip[1]);
                 ProcessHighLights();
                 Redraw();
             }
@@ -1829,11 +1814,13 @@ namespace _3dedit
 
         private void KeyUpEvt(object sender, KeyEventArgs e)
         {
-            char key = (char)e.KeyValue;
+            string key = ((char)e.KeyValue).ToString();
+            var action = Keybinds.GetAction(key);
 
-            if (gripBinds.ContainsKey(key))
+            if (action == null) return;
+
+            if (action.OnKeyUp(ref Cube))
             {
-                Cube.Grip(-1, 1);
                 ProcessHighLights();
                 Redraw();
             }
@@ -2078,6 +2065,8 @@ namespace _3dedit
             Cube.Init(GetSize(),GetDim());
             qSolved=true;
 
+            Keybinds = new Keybindings();
+
             if(Macros==null || !Macros.CheckSize(GetDim(),GetSize())) {
                 Macros=new CMacroFile(GetDim(),GetSize());
                 InitMacroList();
@@ -2307,14 +2296,16 @@ namespace _3dedit
         private void mi_Exit_Click(object sender,EventArgs e) {
             if(!SettingsSaved) {
                 SaveSettings("MC7D_settings.txt");
-                SettingsSaved=true;
+                SaveKeybinds("MC7D_keybinds.txt");
+                SettingsSaved =true;
             }
             Application.Exit();
         }
         private void Form1_FormClosing(object sender,FormClosingEventArgs e) {
             if(!SettingsSaved) {
                 SaveSettings("MC7D_settings.txt");
-                SettingsSaved=true;
+                SaveKeybinds("MC7D_keybinds.txt");
+                SettingsSaved =true;
             }
         }
 
@@ -2520,6 +2511,48 @@ namespace _3dedit
                 qSolved=Cube.CheckCube();
 
 
+            }
+        }
+
+        void SaveKeybinds(string fn)
+        {
+            try
+            {
+                StreamWriter sw = new StreamWriter(fn);
+                sw.NewLine = "\r\n";
+                sw.WriteLine("MC7D Keybinds");
+                sw.Write(Keybinds.Serialize());
+                sw.WriteLine();
+                sw.Close();
+            }
+            catch { }
+        }
+
+        void LoadKeybinds(string fn)
+        {
+            StreamReader sr = null;
+            if (File.Exists(fn))
+            {
+                try
+                {
+                    sr = new StreamReader(fn);
+                    string ln = sr.ReadLine();
+                    if (ln != "MC7D Keybinds") return;
+
+                    for (; ; )
+                    {
+                        ln = sr.ReadLine();
+                        if (ln == null) break;
+
+                        Keybinds.LoadKeybindSet(ln);
+                    }
+                }
+                catch {
+                }
+            }
+            if (sr != null)
+            {
+                sr.Close();
             }
         }
 

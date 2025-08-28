@@ -274,17 +274,14 @@ namespace _3dedit {
             return Twist(Gripped[0], f1, f2, Gripped[1]);
         }
 
-        public bool Grip(int f0, int m0) {
+        public void Grip(int f0, int m0) {
             if (Gripped[0] == f0 && Gripped[1] == m0)
             {
                 Gripped[0] = -1;
-                return true;
             }
 
             Gripped[0] = f0;
             Gripped[1] = m0;
-
-            return true;
         }
 
         public bool Twist(int f0,int f1,int f2,int m0) {
