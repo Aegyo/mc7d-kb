@@ -167,6 +167,8 @@ namespace _3dedit
 			this.dxControl2.MouseDown += new MouseEventHandler(MouseDownEvt);
 			this.dxControl2.MouseMove += new MouseEventHandler(MouseEvt);
             this.dxControl2.KeyPress += new KeyPressEventHandler(KeyPressEvt);
+            this.dxControl2.KeyDown += new KeyEventHandler(KeyDownEvt);
+            this.dxControl2.KeyUp += new KeyEventHandler(KeyUpEvt);
 
 			this.panel2.Controls.Add(this.dxControl2);
 
@@ -1637,8 +1639,60 @@ namespace _3dedit
             mi_PuzzleSize4.Checked=(n==4);
             mi_PuzzleSize5.Checked=(n==5);
         }
-        
-        
+
+        static int X = 2, Y = 4, Z = 3, W = 1, V = 5;
+        // Facet -> [axis, layer mask]
+        static Dictionary<char, int[]> faces = new Dictionary<char, int[]>
+            {
+                { 'I', new int[] { W, 1 } },
+                { 'O', new int[] { W, 4 } },
+                { 'L', new int[] { X, 1 } },
+                { 'R', new int[] { X, 4 } },
+                { 'B', new int[] { Z, 1 } },
+                { 'F', new int[] { Z, 4 } },
+                { 'U', new int[] { Y, 1 } },
+                { 'D', new int[] { Y, 4 } },
+                { 'A', new int[] { V, 1 } },
+                { 'P', new int[] { V, 4 } }
+            };
+        // KeyChar -> Facet
+        static Dictionary<char, char> gripBinds = new Dictionary<char, char>
+            {
+                { 'D', 'I' },
+                { 'V', 'O' },
+                { 'S', 'L' },
+                { 'F', 'R' },
+                { 'E', 'U' },
+                { 'C', 'D' },
+                { 'W', 'F' },
+                { 'R', 'B' },
+                { 'A', 'A' },
+                { 'G', 'P' },
+            };
+
+
+        // KeyChar -> Rotation Plane
+        static Dictionary<char, int[]> twistBinds = new Dictionary<char, int[]>
+            {
+                { 'J', new int[] { X, Z } },
+                { 'L', new int[] { Z, X } },
+
+                { 'K', new int[] { Z, Y } },
+                { 'I', new int[] { Y, Z } },
+
+                { 'U', new int[] { Y, X } },
+                { 'O', new int[] { X, Y } },
+
+                { 'Y', new int[] { W, Y } },
+                { 'H', new int[] { Y, W } },
+
+                { 'M', new int[] { W, X } },
+                { ',', new int[] { X, W } },
+
+                { 'N', new int[] { Z, W } },
+                { '.', new int[] { W, Z } },
+            };
+
         Cube7D Cube;
         CubeObj CubeView;
         int TRate=500;
@@ -1728,75 +1782,7 @@ namespace _3dedit
 
         private void KeyPressEvt(object sender, KeyPressEventArgs e)
         {
-            int X = 2, Y = 4, Z = 3, W = 1, V = 5;
-            // Facet -> [axis, layer mask]
-            Dictionary<char, int[]> faces = new Dictionary<char, int[]>
-            {
-                { 'I', new int[] { W, 1 } },
-                { 'O', new int[] { W, 4 } },
-                { 'L', new int[] { X, 1 } },
-                { 'R', new int[] { X, 4 } },
-                { 'B', new int[] { Z, 1 } },
-                { 'F', new int[] { Z, 4 } },
-                { 'U', new int[] { Y, 1 } },
-                { 'D', new int[] { Y, 4 } },
-                { 'A', new int[] { V, 1 } },
-                { 'P', new int[] { V, 4 } }
-            };
-
-            // KeyChar -> Facet
-            Dictionary<char, char> gripBinds = new Dictionary<char, char>
-            {
-                { 'D', 'I' },
-                { 'V', 'O' },
-                { 'S', 'L' },
-                { 'F', 'R' },
-                { 'E', 'U' },
-                { 'C', 'D' },
-                { 'W', 'F' },
-                { 'R', 'B' },
-                { 'A', 'A' },
-                { 'G', 'P' },
-            };
-
-            // KeyChar -> Rotation Plane
-            Dictionary<char, int[]> twistBinds = new Dictionary<char, int[]>
-            {
-                { 'J', new int[] { X, Z } },
-                { 'L', new int[] { Z, X } },
-
-                { 'K', new int[] { Z, Y } },
-                { 'I', new int[] { Y, Z } },
-
-                { 'U', new int[] { Y, X } },
-                { 'O', new int[] { X, Y } },
-
-                { 'Y', new int[] { W, Y } },
-                { 'H', new int[] { Y, W } },
-
-                { 'M', new int[] { W, X } },
-                { ',', new int[] { X, W } },
-
-                { 'N', new int[] { Z, W } },
-                { '.', new int[] { W, Z } },
-            };
-
             char key = char.ToUpper(e.KeyChar);
-
-            if (gripBinds.ContainsKey(key))
-            {
-                int[] toGrip = faces[gripBinds[key]];
-                Cube.Grip(toGrip[0], toGrip[1]);
-                Cube.HighLightGrip();
-                if (Cube.Gripped[0] < 0)
-                {
-                    if (cb_HighlightByColors.CheckState != CheckState.Unchecked)
-                        Cube.FindStickersByMask(FaceMask, cb_HighlightByColors.CheckState == CheckState.Checked);
-                    else Cube.HighlightAll();
-                    Redraw();
-                }
-                Redraw();
-            }
 
             if (twistBinds.ContainsKey(key) && Cube.Gripped[0] != -1)
             {
@@ -1823,8 +1809,43 @@ namespace _3dedit
                 }
 
                 Cube.TwistGrip(from, to);
+                ProcessHighLights();
                 Redraw();
             }
+        }
+
+        private void KeyDownEvt(object sender, KeyEventArgs e)
+        {
+            char key = (char)e.KeyValue;
+
+            if (gripBinds.ContainsKey(key) && Cube.Gripped[0] == -1)
+            {
+                int[] toGrip = faces[gripBinds[key]];
+                Cube.Grip(toGrip[0], toGrip[1]);
+                ProcessHighLights();
+                Redraw();
+            }
+        }
+
+        private void KeyUpEvt(object sender, KeyEventArgs e)
+        {
+            char key = (char)e.KeyValue;
+
+            if (gripBinds.ContainsKey(key))
+            {
+                Cube.Grip(-1, 1);
+                ProcessHighLights();
+                Redraw();
+            }
+        }
+
+        private void ProcessHighLights()
+        {
+            if (cb_HighlightByColors.CheckState != CheckState.Unchecked)
+                Cube.FindStickersByMask(FaceMask, cb_HighlightByColors.CheckState == CheckState.Checked);
+            else Cube.HighlightAll();
+
+            Cube.HighLightGrip();
         }
 
 		
