@@ -35,14 +35,16 @@ namespace _3dedit
             { "U", new Twist(Axis.Y, Axis.X) },
             { "O", new Twist(Axis.X, Axis.Y) },
 
-            { "Y", new Twist(Axis.W, Axis.Y) },
-            { "H", new Twist(Axis.Y, Axis.W) },
+            { "Y", new Twist(Axis.V, Axis.Y) },
+            { "H", new Twist(Axis.Y, Axis.V) },
 
-            { "M", new Twist(Axis.W, Axis.X) },
-            { ",", new Twist(Axis.X, Axis.W) },
+            { "M", new Twist(Axis.V, Axis.X) },
+            { ",", new Twist(Axis.X, Axis.V) },
 
-            { "N", new Twist(Axis.Z, Axis.W) },
-            { ".", new Twist(Axis.W, Axis.Z) },
+            { "N", new Twist(Axis.Z, Axis.V) },
+            { ".", new Twist(Axis.V, Axis.Z) },
+
+            { " ", new Recenter() },
         });
 
         public Keybindings()
@@ -138,7 +140,10 @@ namespace _3dedit
 
                 foreach (var item in binds)
                 {
-                    res.Add($"{item.Key},{item.Value.Serialize()}");
+                    string k = item.Key;
+                    if (k == " ") k = "Space";
+                    if (k == ",") k = "Comma";
+                    res.Add($"{k},{item.Value.Serialize()}");
                 }
 
                 return String.Join(" ", res.ToArray());
@@ -163,12 +168,18 @@ namespace _3dedit
                         case "Twist":
                             action = new Twist(Axis.X, Axis.X);
                             break;
+                        case "Recenter":
+                            action = new Recenter();
+                            break;
                     }
 
                     if (action != null)
                     {
+                        string k = p2[0];
+                        if (k == "Space") k = " ";
+                        if (k == "Comma") k = ",";
                         action.Deserialize(item);
-                        binds.Add(p2[0], action);
+                        binds.Add(k, action);
                     }
                 }
             }
@@ -295,6 +306,25 @@ namespace _3dedit
 
                 axis = Axis.fromString[p[2]];
             }
+        }
+
+        public class Recenter : IAction
+        {
+            public bool OnKeyPress(ref Cube7D Cube)
+            {
+                if (Cube.Gripped[0] != -1)
+                {
+                    Cube.RotateCubeByGrip();
+                    return true;
+                }
+
+                return false;
+            }
+            public bool OnKeyDown(ref Cube7D Cube) { return false; }
+            public bool OnKeyUp(ref Cube7D Cube) { return false;  }
+
+            public string Serialize() { return "Recenter"; }
+            public void Deserialize(string s) { }
         }
 
     }

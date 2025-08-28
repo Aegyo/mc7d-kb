@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 
 namespace _3dedit {
@@ -271,7 +272,10 @@ namespace _3dedit {
             {
                 return false;
             }
-            return Twist(Gripped[0], f1, f2, Gripped[1]);
+            int f0 = Orient[Gripped[0] - 1];
+            f1 = Orient[f1 - 1];
+            f2 = Orient[f2 - 1];
+            return Twist(f0, f1, f2, Gripped[1]);
         }
 
         public void Grip(int f0, int m0) {
@@ -338,10 +342,26 @@ namespace _3dedit {
             for(int i=0;i<NC;i++) Cube[i]=Cube2[i];
         }
 
+
+        public int[] NormGrip()
+        {
+            int f0 = Gripped[0], m0 = Gripped[1];
+            if (f0 == -1) return Gripped;
+
+            f0 = Orient[f0 - 1];
+            if (f0 < 0) f0 = -f0;
+            else m0 = reverse(m0);
+
+            return new int[] { f0, m0 };
+        }
+
         public void HighLightGrip()
         {
-            int f0 = Gripped[0]-1, m0 = reverse(Gripped[1]);
-            if (f0 < 0) return;
+            int[] ng = NormGrip();
+            int f0 = ng[0], m0 = ng[1];
+            if (f0 == -1) return;
+
+            f0 = f0 - 1;
 
             int m1 = 1 << (N - 1);
             int m = (m0 & 1) + (m0 << 1) + ((m0 & m1) << 2);
@@ -435,18 +455,35 @@ namespace _3dedit {
             return 0;
         }
 
+        public bool RotateCubeByGrip()
+        {
+            int[] ng = NormGrip();
+            int f0 = ng[0];
+            if ((ng[1]&4) == 0)
+            {
+                f0 = -f0;
+            }
+            return RotateCubeByFacet(f0);
+        }
+
         public bool RotateCubeBySticker(int st) { // visible
             int f0=GetStickerFace(StkMap[st]);
-            int d0=GetFaceDir(f0);
-            if(Math.Abs(d0)==1) return false;
+            return RotateCubeByFacet(f0);
+        }
 
-            int c=Orient[0];
-            if(d0>0) Orient[d0-1]=-c;
-            else Orient[-d0-1]=c;
-            Orient[0]=f0;
+        public bool RotateCubeByFacet(int f0)
+        {
+            int d0 = GetFaceDir(f0);
+            if (Math.Abs(d0) == 1) return false;
+
+            int c = Orient[0];
+            if (d0 > 0) Orient[d0 - 1] = -c;
+            else Orient[-d0 - 1] = c;
+            Orient[0] = f0;
             InitStkMap();
             return true;
         }
+
         public bool RotateCubeByStickers(int f0,int f1,int f2) { // absolute
             int d1=GetFaceDir(f1),d2=GetFaceDir(f2);
             int v1=Math.Abs(d1)-1,v2=Math.Abs(d2)-1;
