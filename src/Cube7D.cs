@@ -23,6 +23,8 @@ namespace _3dedit {
         public int[] Orient;  // +-side
         int[] DimStat; // 0 - center, 1 - main, 2 - secondary
 
+        public int[] Gripped;
+
         public short[] Seq;
         public int LSeq,LPtr,LShuffle;
         public int NTwists;
@@ -59,6 +61,8 @@ namespace _3dedit {
             for(int i=0;i<D;i++) Orient[i]=i+1;
             DimStat=new int[7];
             for(int i=1;i<D;i++) DimStat[i]=i<4 ? 1 : 2;
+
+            Gripped = new int[2] { -1, 1 };
 
             SetCoords();
             InitCube();
@@ -261,6 +265,28 @@ namespace _3dedit {
                 int c=-f2; f2=f1; f1=c;
             }
         }
+
+        public bool TwistGrip(int f1, int f2) {
+            if (Gripped[0] < 0)
+            {
+                return false;
+            }
+            return Twist(Gripped[0], f1, f2, Gripped[1]);
+        }
+
+        public bool Grip(int f0, int m0) {
+            if (Gripped[0] == f0 && Gripped[1] == m0)
+            {
+                Gripped[0] = -1;
+                return true;
+            }
+
+            Gripped[0] = f0;
+            Gripped[1] = m0;
+
+            return true;
+        }
+
         public bool Twist(int f0,int f1,int f2,int m0) {
             NormTwist(ref f0,ref f1,ref f2,ref m0);           
             if(f0==f1 || f0==f2 ||f1==f2) return false;

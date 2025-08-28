@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Drawing;
-using System.Threading;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
-using System.Reflection;
 using System.Data;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
-
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 
@@ -165,6 +166,7 @@ namespace _3dedit
 			this.dxControl2.MouseUp += new MouseEventHandler(MouseUpEvt);
 			this.dxControl2.MouseDown += new MouseEventHandler(MouseDownEvt);
 			this.dxControl2.MouseMove += new MouseEventHandler(MouseEvt);
+            this.dxControl2.KeyPress += new KeyPressEventHandler(KeyPressEvt);
 
 			this.panel2.Controls.Add(this.dxControl2);
 
@@ -1723,6 +1725,98 @@ namespace _3dedit
 				dxControl2.ProcessMouse(e,targ,func);
 			}
 		}
+
+        private void KeyPressEvt(object sender, KeyPressEventArgs e)
+        {
+            int X = 2, Y = 4, Z = 3, W = 1, V = 5;
+            // Facet -> [axis, layer mask]
+            Dictionary<char, int[]> faces = new Dictionary<char, int[]>
+            {
+                { 'I', new int[] { W, 1 } },
+                { 'O', new int[] { W, 4 } },
+                { 'L', new int[] { X, 1 } },
+                { 'R', new int[] { X, 4 } },
+                { 'B', new int[] { Z, 1 } },
+                { 'F', new int[] { Z, 4 } },
+                { 'U', new int[] { Y, 1 } },
+                { 'D', new int[] { Y, 4 } },
+                { 'A', new int[] { V, 1 } },
+                { 'P', new int[] { V, 4 } }
+            };
+
+            // KeyChar -> Facet
+            Dictionary<char, char> gripBinds = new Dictionary<char, char>
+            {
+                { 'D', 'I' },
+                { 'V', 'O' },
+                { 'S', 'L' },
+                { 'F', 'R' },
+                { 'E', 'U' },
+                { 'C', 'D' },
+                { 'W', 'F' },
+                { 'R', 'B' },
+                { 'A', 'A' },
+                { 'G', 'P' },
+            };
+
+            // KeyChar -> Rotation Plane
+            Dictionary<char, int[]> twistBinds = new Dictionary<char, int[]>
+            {
+                { 'J', new int[] { X, Z } },
+                { 'L', new int[] { Z, X } },
+
+                { 'K', new int[] { Z, Y } },
+                { 'I', new int[] { Y, Z } },
+
+                { 'U', new int[] { Y, X } },
+                { 'O', new int[] { X, Y } },
+
+                { 'Y', new int[] { W, Y } },
+                { 'H', new int[] { Y, W } },
+
+                { 'M', new int[] { W, X } },
+                { ',', new int[] { X, W } },
+
+                { 'N', new int[] { Z, W } },
+                { '.', new int[] { W, Z } },
+            };
+
+            char key = char.ToUpper(e.KeyChar);
+
+            if (gripBinds.ContainsKey(key))
+            {
+                int[] toGrip = faces[gripBinds[key]];
+                Cube.Grip(toGrip[0], toGrip[1]);
+            }
+
+            if (twistBinds.ContainsKey(key) && Cube.Gripped[0] != -1)
+            {
+                int[] twist = twistBinds[key];
+                int from = twist[0];
+                int to = twist[1];
+                bool flip = false;
+
+                if (Cube.Gripped[0] == from)
+                {
+                    from = Cube.Gripped[0] == W ? V : W;
+                    flip = true;
+                }
+                if (Cube.Gripped[0] == to)
+                {
+                    to = Cube.Gripped[0] == W ? V : W;
+                    flip = true;
+                }
+                if (flip && Cube.Gripped[1] == 1)
+                {
+                    int tmp = from;
+                    from = to;
+                    to = tmp;
+                }
+
+                Cube.TwistGrip(from, to);
+                Redraw();
+            }
+        }
 
 		
 		public void ProcessClick(MouseEventArgs e){
