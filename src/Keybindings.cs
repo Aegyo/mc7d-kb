@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using static _3dedit.Keybindings;
 
 
 namespace _3dedit
@@ -163,13 +164,16 @@ namespace _3dedit
                     switch (p2[1])
                     {
                         case "Grip":
-                            action = new Grip(Axis.X, 1);
+                            action = new Grip();
                             break;
                         case "Twist":
-                            action = new Twist(Axis.X, Axis.X);
+                            action = new Twist();
                             break;
                         case "Recenter":
                             action = new Recenter();
+                            break;
+                        case "GripTwist":
+                            action = new GripTwist();
                             break;
                     }
 
@@ -200,6 +204,11 @@ namespace _3dedit
             public Axis fromAxis;
             public Axis toAxis;
 
+            public Twist()
+            {
+                this.fromAxis = Axis.X;
+                this.toAxis = Axis.Y;
+            }
             public Twist(Axis fromAxis, Axis toAxis) {
                 this.fromAxis = fromAxis;
                 this.toAxis = toAxis;
@@ -264,6 +273,11 @@ namespace _3dedit
             public Axis axis;
             public int layerMask;
 
+            public Grip()
+            {
+                this.axis = Axis.X;
+                this.layerMask = 1;
+            }
             public Grip(Axis axis, int layerMask){
                 this.axis = axis;
                 this.layerMask = layerMask;
@@ -325,6 +339,59 @@ namespace _3dedit
 
             public string Serialize() { return "Recenter"; }
             public void Deserialize(string s) { }
+        }
+
+        public class GripTwist : IAction
+        {
+            private Grip grip;
+            private Twist twist;
+
+            public GripTwist()
+            {
+                this.grip = new Grip();
+                this.twist = new Twist();
+            }
+            public GripTwist(Axis gripAxis, int layerMask, Axis fromAxis, Axis toAxis)
+            {
+                this.grip = new Grip(gripAxis, layerMask);
+                this.twist = new Twist(fromAxis, toAxis);
+            }
+
+            public bool OnKeyPress(ref Cube7D Cube)
+            {
+                return false;
+            }
+            public bool OnKeyDown(ref Cube7D Cube)
+            {
+                return false;
+            }
+            public bool OnKeyUp(ref Cube7D Cube)
+            {
+                this.grip.OnKeyDown(ref Cube);
+                this.twist.OnKeyPress(ref Cube);
+                this.grip.OnKeyUp(ref Cube);
+                return true;
+            }
+
+            public string Serialize()
+            {
+                return $"GripTwist,{this.grip.axis.name},{this.grip.layerMask},{this.twist.fromAxis.name},{this.twist.toAxis.name}";
+            }
+            public void Deserialize(string s)
+            {
+                string[] p = s.Split(',');
+                if (p[1] != "GripTwist" || !Axis.fromString.ContainsKey(p[2]) || !Axis.fromString.ContainsKey(p[4]) || !Axis.fromString.ContainsKey(p[5]))
+                {
+                    throw new Exception($"Invalid GripTwist: {s}");
+                }
+
+                this.twist.fromAxis = Axis.fromString[p[4]];
+                this.twist.toAxis = Axis.fromString[p[5]];
+
+                Int32.TryParse(p[3], out int mask);
+                this.grip.layerMask = mask;
+                this.grip.axis = Axis.fromString[p[2]];
+            }
         }
 
     }
