@@ -26,6 +26,7 @@ namespace _3dedit {
 
         public int[] Gripped;
         public Keybindings.Twist partialTwist;
+        public HashSet<Keybindings.Layer> LayerOverrides;
 
         public short[] Seq;
         public int LSeq,LPtr,LShuffle;
@@ -66,6 +67,7 @@ namespace _3dedit {
 
             Gripped = new int[2] { -1, 1 };
             partialTwist = new Keybindings.Twist();
+            LayerOverrides = new HashSet<Keybindings.Layer>();
 
             SetCoords();
             InitCube();
@@ -277,7 +279,7 @@ namespace _3dedit {
             int f0 = Orient[Gripped[0] - 1];
             f1 = Orient[f1 - 1];
             f2 = Orient[f2 - 1];
-            return Twist(f0, f1, f2, Gripped[1]);
+            return Twist(f0, f1, f2, GetLayerMask());
         }
 
         public void Grip(int f0, int m0) {
@@ -350,10 +352,27 @@ namespace _3dedit {
             for(int i=0;i<NC;i++) Cube[i]=Cube2[i];
         }
 
+        public int GetLayerMask()
+        {
+            if (LayerOverrides.Count == 0) return Gripped[1];
+
+            int res = 0;
+            foreach( var item in LayerOverrides)
+            {
+                res |= item.layerMask;
+            }
+
+            if ((Gripped[1]&4) != 0)
+            {
+                res = reverse(res);
+            }
+
+            return res;
+        }
 
         public int[] NormGrip()
         {
-            int f0 = Gripped[0], m0 = Gripped[1];
+            int f0 = Gripped[0], m0 = GetLayerMask();
             if (f0 == -1) return Gripped;
 
             f0 = Orient[f0 - 1];

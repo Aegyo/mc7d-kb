@@ -46,6 +46,10 @@ namespace _3dedit
             { ".", new Twist(Axis.V, Axis.Z) },
 
             { " ", new Recenter() },
+
+            { "1", new Layer(1) },
+            { "2", new Layer(2) },
+            { "3", new Layer(4) },
         });
 
         public Keybindings()
@@ -177,6 +181,9 @@ namespace _3dedit
                             break;
                         case "Twist2c":
                             action = new Twist2c();
+                            break;
+                        case "Layer":
+                            action = new Layer();
                             break;
                     }
 
@@ -462,7 +469,7 @@ namespace _3dedit
                 string[] p = s.Split(',');
                 if (p[1] != "Twist2c" || !Axis.fromString.ContainsKey(p[3]))
                 {
-                    throw new Exception($"Invalid GripTwist: {s}");
+                    throw new Exception($"Invalid Twist2c: {s}");
                 }
 
                 this.axis = Axis.fromString[p[3]];
@@ -470,5 +477,49 @@ namespace _3dedit
             }
         }
 
+        public class Layer : IAction
+        {
+            public int layerMask;
+
+            public Layer()
+            {
+                this.layerMask = 1;
+            }
+            public Layer(int layerMask)
+            {
+                this.layerMask = layerMask;
+            }
+
+            public bool OnKeyPress(ref Cube7D Cube)
+            {
+                return false;
+            }
+            public bool OnKeyDown(ref Cube7D Cube)
+            {
+                Cube.LayerOverrides.Add(this);
+                return true;
+            }
+            public bool OnKeyUp(ref Cube7D Cube)
+            {
+                Cube.LayerOverrides.Remove(this);
+                return true;
+            }
+
+            public string Serialize()
+            {
+                return $"Layer,{layerMask}";
+            }
+            public void Deserialize(string s)
+            {
+                string[] p = s.Split(',');
+                if (p[1] != "Layer")
+                {
+                    throw new Exception($"Invalid Layer: {s}");
+                }
+                
+                Int32.TryParse(p[2], out int mask);
+                this.layerMask = mask;
+            }
+        }
     }
 }
