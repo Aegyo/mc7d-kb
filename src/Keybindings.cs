@@ -14,48 +14,89 @@ namespace _3dedit
         public KeybindSet activeKeybinds;
         public string activeKeybindsName;
 
-        public static KeybindSet defaultBinds = new KeybindSet(new Dictionary<string, IAction>
-        {
-            { "D", new Grip(Axis.W, 1) },
-            { "V", new Grip(Axis.W, 4) },
-            { "S", new Grip(Axis.X, 1) },
-            { "F", new Grip(Axis.X, 4) },
-            { "E", new Grip(Axis.Y, 1) },
-            { "C", new Grip(Axis.Y, 4) },
-            { "W", new Grip(Axis.Z, 4) },
-            { "R", new Grip(Axis.Z, 1) },
-            { "A", new Grip(Axis.V, 1) },
-            { "G", new Grip(Axis.V, 4) },
+        public static Dictionary<string, KeybindSet> defaultBinds = new Dictionary<string, KeybindSet> {
+            { "5D_2key",  new KeybindSet(new Dictionary<string, IAction> {
+                { "D", new Grip(Axis.W, 1) },
+                { "V", new Grip(Axis.W, 4) },
+                { "S", new Grip(Axis.X, 1) },
+                { "F", new Grip(Axis.X, 4) },
+                { "E", new Grip(Axis.Y, 1) },
+                { "C", new Grip(Axis.Y, 4) },
+                { "W", new Grip(Axis.Z, 4) },
+                { "R", new Grip(Axis.Z, 1) },
+                { "A", new Grip(Axis.V, 1) },
+                { "G", new Grip(Axis.V, 4) },
 
-            { "J", new Twist(Axis.X, Axis.Z) },
-            { "L", new Twist(Axis.Z, Axis.X) },
+                { "J", new Twist(Axis.X, Axis.Z) },
+                { "L", new Twist(Axis.Z, Axis.X) },
 
-            { "K", new Twist(Axis.Z, Axis.Y) },
-            { "I", new Twist(Axis.Y, Axis.Z) },
+                { "K", new Twist(Axis.Z, Axis.Y) },
+                { "I", new Twist(Axis.Y, Axis.Z) },
 
-            { "U", new Twist(Axis.Y, Axis.X) },
-            { "O", new Twist(Axis.X, Axis.Y) },
+                { "U", new Twist(Axis.Y, Axis.X) },
+                { "O", new Twist(Axis.X, Axis.Y) },
 
-            { "Y", new Twist(Axis.V, Axis.Y) },
-            { "H", new Twist(Axis.Y, Axis.V) },
+                { "Y", new Twist(Axis.V, Axis.Y) },
+                { "H", new Twist(Axis.Y, Axis.V) },
 
-            { "M", new Twist(Axis.V, Axis.X) },
-            { ",", new Twist(Axis.X, Axis.V) },
+                { "M", new Twist(Axis.V, Axis.X) },
+                { ",", new Twist(Axis.X, Axis.V) },
 
-            { "N", new Twist(Axis.Z, Axis.V) },
-            { ".", new Twist(Axis.V, Axis.Z) },
+                { "N", new Twist(Axis.Z, Axis.V) },
+                { ".", new Twist(Axis.V, Axis.Z) },
 
-            { " ", new Recenter() },
+                { " ", new Recenter() },
 
-            { "1", new Layer(1) },
-            { "2", new Layer(2) },
-            { "3", new Layer(4) },
-        });
+                { "1", new Layer(1) },
+                { "2", new Layer(2) },
+                { "3", new Layer(4) },
+            })},
+            { "Default_3key", new KeybindSet(new Dictionary<string, IAction>{
+                { "D", new Grip(Axis.W, 1) },
+                { "V", new Grip(Axis.W, 4) },
+                { "S", new Grip(Axis.X, 1) },
+                { "F", new Grip(Axis.X, 4) },
+                { "E", new Grip(Axis.Y, 1) },
+                { "C", new Grip(Axis.Y, 4) },
+                { "W", new Grip(Axis.Z, 4) },
+                { "R", new Grip(Axis.Z, 1) },
+                { "A", new Grip(Axis.V, 1) },
+                { "G", new Grip(Axis.V, 4) },
+                { "Q", new Grip(Axis.U, 1) },
+                { "T", new Grip(Axis.U, 4) },
+                { "Z", new Grip(Axis.T, 1) },
+                { "B", new Grip(Axis.T, 4) },
+
+                { "K", new Twist2c(Axis.W, false) },
+                { ",", new Twist2c(Axis.W, true) },
+                { "J", new Twist2c(Axis.X, false) },
+                { "L", new Twist2c(Axis.X, true) },
+                { "I", new Twist2c(Axis.Y, false) },
+                { "<", new Twist2c(Axis.Y, true) },
+                { "O", new Twist2c(Axis.Z, false) },
+                { "U", new Twist2c(Axis.Z, true) },
+                { "H", new Twist2c(Axis.V, false) },
+                { ";", new Twist2c(Axis.V, true) },
+                { "Y", new Twist2c(Axis.U, false) },
+                { "P", new Twist2c(Axis.U, true) },
+                { "N", new Twist2c(Axis.T, false) },
+                { ".", new Twist2c(Axis.T, true) },
+
+                { " ", new Recenter() },
+
+                { "1", new Layer(1) },
+                { "2", new Layer(2) },
+                { "3", new Layer(4) },
+            }) }
+        };
 
         public Keybindings()
         {
-            keybinds.Add("__Default", defaultBinds);
-            switchKeybindSet("__Default");
+            foreach (var item in defaultBinds)
+            {
+                keybinds.Add(item.Key, item.Value);
+            }
+            switchKeybindSet("5D_2key");
         }
 
         public IAction GetAction(string key)
