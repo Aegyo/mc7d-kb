@@ -67,20 +67,12 @@ namespace _3dedit
                 { "Z", new Grip(Axis.T, 1) },
                 { "B", new Grip(Axis.T, 4) },
 
-                { "K", new Twist2c(Axis.W, false) },
-                { ",", new Twist2c(Axis.W, true) },
-                { "J", new Twist2c(Axis.X, false) },
                 { "L", new Twist2c(Axis.X, true) },
-                { "I", new Twist2c(Axis.Y, false) },
-                { "<", new Twist2c(Axis.Y, true) },
-                { "O", new Twist2c(Axis.Z, false) },
-                { "U", new Twist2c(Axis.Z, true) },
-                { "H", new Twist2c(Axis.V, false) },
-                { ";", new Twist2c(Axis.V, true) },
-                { "Y", new Twist2c(Axis.U, false) },
-                { "P", new Twist2c(Axis.U, true) },
-                { "N", new Twist2c(Axis.T, false) },
-                { ".", new Twist2c(Axis.T, true) },
+                { "K", new Twist2c(Axis.Y, false) },
+                { "J", new Twist2c(Axis.Z, true) },
+                { "O", new Twist2c(Axis.V, true) },
+                { "I", new Twist2c(Axis.U, false) },
+                { "U", new Twist2c(Axis.T, false) },
 
                 { " ", new Recenter() },
 
@@ -268,6 +260,11 @@ namespace _3dedit
             public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 if (Cube.Gripped[0] == -1)
+                {
+                    return;
+                }
+
+                if (Cube.D < fromAxis.idx || Cube.D < toAxis.idx)
                 {
                     return;
                 }
