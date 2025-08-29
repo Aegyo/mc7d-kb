@@ -94,7 +94,7 @@ namespace _3dedit
                 switchKeybindSet(p[0]);
             }
         }
-        bool switchKeybindSet(string name)
+        public bool switchKeybindSet(string name)
         {
             if (keybinds.ContainsKey(name))
             {
@@ -200,9 +200,9 @@ namespace _3dedit
         }
 
         public interface IAction {
-            bool OnKeyPress(ref Cube7D Cube);
-            bool OnKeyDown(ref Cube7D Cube);
-            bool OnKeyUp(ref Cube7D Cube);
+            void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist);
+            void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist);
+            void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist);
 
             string Serialize();
             void Deserialize(string s);
@@ -224,11 +224,11 @@ namespace _3dedit
                 this.toAxis = toAxis;
             }
 
-            public bool OnKeyPress(ref Cube7D Cube)
+            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 if (Cube.Gripped[0] == -1)
                 {
-                    return false;
+                    return;
                 }
 
                 int from = fromAxis.idx;
@@ -254,11 +254,12 @@ namespace _3dedit
 
                 Cube.TwistGrip(from, to);
 
-                return true;
+                redraw = true;
+                didTwist = true;
             }
 
-            public bool OnKeyDown(ref Cube7D Cube) { return false; }
-            public bool OnKeyUp(ref Cube7D Cube) { return false;  }
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
             public string Serialize()
             {
@@ -294,20 +295,19 @@ namespace _3dedit
             }
 
 
-            public bool OnKeyPress(ref Cube7D Cube) { return false; }
-            public bool OnKeyDown(ref Cube7D Cube)
+            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 Cube.Grip(axis.idx, layerMask);
-                return true;
+                redraw = true;
             }
-            public bool OnKeyUp(ref Cube7D Cube)
+            public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 if (Cube.Gripped[0] == axis.idx && Cube.Gripped[1] == layerMask)
                 {
                     Cube.Grip(-1, 1);
-                    return true;
+                    redraw = true;
                 }
-                return false;
             }
 
             public string Serialize()
@@ -334,18 +334,16 @@ namespace _3dedit
 
         public class Recenter : IAction
         {
-            public bool OnKeyPress(ref Cube7D Cube)
+            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 if (Cube.Gripped[0] != -1)
                 {
                     Cube.RotateCubeByGrip();
-                    return true;
+                    redraw = true;
                 }
-
-                return false;
             }
-            public bool OnKeyDown(ref Cube7D Cube) { return false; }
-            public bool OnKeyUp(ref Cube7D Cube) { return false;  }
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
             public string Serialize() { return "Recenter"; }
             public void Deserialize(string s) { }
@@ -367,20 +365,13 @@ namespace _3dedit
                 this.twist = new Twist(fromAxis, toAxis);
             }
 
-            public bool OnKeyPress(ref Cube7D Cube)
+            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
-                return false;
-            }
-            public bool OnKeyDown(ref Cube7D Cube)
-            {
-                return false;
-            }
-            public bool OnKeyUp(ref Cube7D Cube)
-            {
-                this.grip.OnKeyDown(ref Cube);
-                this.twist.OnKeyPress(ref Cube);
-                this.grip.OnKeyUp(ref Cube);
-                return true;
+                this.grip.OnKeyDown(ref Cube, ref redraw, ref didTwist);
+                this.twist.OnKeyPress(ref Cube, ref redraw, ref didTwist);
+                this.grip.OnKeyUp(ref Cube, ref redraw, ref didTwist);
             }
 
             public string Serialize()
@@ -420,12 +411,9 @@ namespace _3dedit
                 this.axis = axis;
                 this.negative = negative;
             }
+            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
-            public bool OnKeyPress(ref Cube7D Cube)
-            {
-                return false;
-            }
-            public bool OnKeyDown(ref Cube7D Cube)
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 Twist t = Cube.partialTwist;
 
@@ -447,18 +435,15 @@ namespace _3dedit
 
                 if (t.toAxis != null && t.fromAxis != null)
                 {
-                    t.OnKeyPress(ref Cube);
+                    t.OnKeyPress(ref Cube, ref redraw, ref didTwist);
                     t.toAxis = null;
                     t.fromAxis = null;
-                    return true;
-                }
 
-                return false;
+                    redraw = true;
+                    didTwist = true;
+                }
             }
-            public bool OnKeyUp(ref Cube7D Cube)
-            {
-                return false;
-            }
+           public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
             public string Serialize()
             {
@@ -490,19 +475,16 @@ namespace _3dedit
                 this.layerMask = layerMask;
             }
 
-            public bool OnKeyPress(ref Cube7D Cube)
-            {
-                return false;
-            }
-            public bool OnKeyDown(ref Cube7D Cube)
+            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 Cube.LayerOverrides.Add(this);
-                return true;
+                redraw = true;
             }
-            public bool OnKeyUp(ref Cube7D Cube)
+            public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 Cube.LayerOverrides.Remove(this);
-                return true;
+                redraw = true;
             }
 
             public string Serialize()

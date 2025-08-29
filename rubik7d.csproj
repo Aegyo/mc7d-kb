@@ -153,6 +153,11 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="src\Keybindings.cs" />
     <Compile Include="src\CMacroFile.cs" />
     <Compile Include="src\Cube7D.cs" />
@@ -208,6 +213,10 @@
     <Compile Include="src\TextDialog.Designer.cs">
       <DependentUpon>TextDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\rubik7d.resx">
       <DependentUpon>rubik7d.cs</DependentUpon>
       <SubType>Designer</SubType>
