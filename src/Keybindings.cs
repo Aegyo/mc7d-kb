@@ -26,6 +26,7 @@ namespace _3dedit
                 { "R", new Grip(Axis.Z, 1) },
                 { "A", new Grip(Axis.V, 1) },
                 { "G", new Grip(Axis.V, 4) },
+                { "X", new Grip(Axis.W, 0b11111) },
 
                 { "J", new Twist(Axis.X, Axis.Z) },
                 { "L", new Twist(Axis.Z, Axis.X) },
@@ -40,16 +41,17 @@ namespace _3dedit
                 { "H", new Twist(Axis.Y, Axis.V) },
 
                 { "M", new Twist(Axis.V, Axis.X) },
-                { ",", new Twist(Axis.X, Axis.V) },
+                { "Oemcomma", new Twist(Axis.X, Axis.V) },
 
                 { "N", new Twist(Axis.Z, Axis.V) },
-                { ".", new Twist(Axis.V, Axis.Z) },
+                { "OemPeriod", new Twist(Axis.V, Axis.Z) },
 
-                { " ", new Recenter() },
+                { "Space", new Recenter() },
 
-                { "1", new Layer(1) },
-                { "2", new Layer(2) },
-                { "3", new Layer(4) },
+                { "D1", new Layer(1) },
+                { "D2", new Layer(2) },
+                { "D3", new Layer(4) },
+                { "ShiftKey", new Layer(1|2) },
             })},
             { "Default_3key", new KeybindSet(new Dictionary<string, IAction>{
                 { "D", new Grip(Axis.W, 1) },
@@ -66,6 +68,7 @@ namespace _3dedit
                 { "T", new Grip(Axis.U, 4) },
                 { "Z", new Grip(Axis.T, 1) },
                 { "B", new Grip(Axis.T, 4) },
+                { "X", new Grip(Axis.W, 0b11111) },
 
                 { "L", new Twist2c(Axis.X, true) },
                 { "K", new Twist2c(Axis.Y, false) },
@@ -74,11 +77,11 @@ namespace _3dedit
                 { "I", new Twist2c(Axis.U, false) },
                 { "U", new Twist2c(Axis.T, false) },
 
-                { " ", new Recenter() },
+                { "Space", new Recenter() },
 
-                { "1", new Layer(1) },
-                { "2", new Layer(2) },
-                { "3", new Layer(4) },
+                { "D1", new Layer(1) },
+                { "D2", new Layer(2) },
+                { "D3", new Layer(4) },
             }) }
         };
 
@@ -93,8 +96,7 @@ namespace _3dedit
 
         public IAction GetAction(string key)
         {
-            IAction action = null;
-            bool res = activeKeybinds.binds.TryGetValue(key, out action);
+            bool res = activeKeybinds.binds.TryGetValue(key, out IAction action);
             return action;
         }
 
@@ -179,8 +181,6 @@ namespace _3dedit
                 foreach (var item in binds)
                 {
                     string k = item.Key;
-                    if (k == " ") k = "Space";
-                    if (k == ",") k = "Comma";
                     res.Add($"{k},{item.Value.Serialize()}");
                 }
 
@@ -223,8 +223,6 @@ namespace _3dedit
                     if (action != null)
                     {
                         string k = p2[0];
-                        if (k == "Space") k = " ";
-                        if (k == "Comma") k = ",";
                         action.Deserialize(item);
                         binds.Add(k, action);
                     }
@@ -233,7 +231,6 @@ namespace _3dedit
         }
 
         public interface IAction {
-            void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist);
             void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist);
             void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist);
 
@@ -257,7 +254,7 @@ namespace _3dedit
                 this.toAxis = toAxis;
             }
 
-            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 if (Cube.Gripped[0] == -1)
                 {
@@ -296,7 +293,6 @@ namespace _3dedit
                 didTwist = true;
             }
 
-            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
             public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
             public string Serialize()
@@ -333,7 +329,6 @@ namespace _3dedit
             }
 
 
-            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
             public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 Cube.Grip(axis.idx, layerMask);
@@ -372,7 +367,7 @@ namespace _3dedit
 
         public class Recenter : IAction
         {
-            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 if (Cube.Gripped[0] != -1)
                 {
@@ -380,7 +375,6 @@ namespace _3dedit
                     redraw = true;
                 }
             }
-            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
             public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
             public string Serialize() { return "Recenter"; }
@@ -403,12 +397,12 @@ namespace _3dedit
                 this.twist = new Twist(fromAxis, toAxis);
             }
 
-            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
             public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
             public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 this.grip.OnKeyDown(ref Cube, ref redraw, ref didTwist);
-                this.twist.OnKeyPress(ref Cube, ref redraw, ref didTwist);
+                this.twist.OnKeyDown(ref Cube, ref redraw, ref didTwist);
+                this.twist.OnKeyUp(ref Cube, ref redraw, ref didTwist);
                 this.grip.OnKeyUp(ref Cube, ref redraw, ref didTwist);
             }
 
@@ -449,7 +443,6 @@ namespace _3dedit
                 this.axis = axis;
                 this.negative = negative;
             }
-            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
 
             public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
@@ -473,7 +466,8 @@ namespace _3dedit
 
                 if (t.toAxis != null && t.fromAxis != null)
                 {
-                    t.OnKeyPress(ref Cube, ref redraw, ref didTwist);
+                    t.OnKeyDown(ref Cube, ref redraw, ref didTwist);
+                    t.OnKeyUp(ref Cube, ref redraw, ref didTwist);
                     t.toAxis = null;
                     t.fromAxis = null;
 
@@ -513,7 +507,6 @@ namespace _3dedit
                 this.layerMask = layerMask;
             }
 
-            public void OnKeyPress(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
             public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
                 Cube.LayerOverrides.Add(this);

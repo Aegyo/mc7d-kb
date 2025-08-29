@@ -167,7 +167,6 @@ namespace _3dedit
 			this.dxControl2.MouseUp += new MouseEventHandler(MouseUpEvt);
 			this.dxControl2.MouseDown += new MouseEventHandler(MouseDownEvt);
 			this.dxControl2.MouseMove += new MouseEventHandler(MouseEvt);
-            this.dxControl2.KeyPress += new KeyPressEventHandler(KeyPressEvt);
             this.dxControl2.KeyDown += new KeyEventHandler(KeyDownEvt);
             this.dxControl2.KeyUp += new KeyEventHandler(KeyUpEvt);
 
@@ -1675,7 +1674,7 @@ namespace _3dedit
         int TwistMask;     // pressed 1-5
         bool RotateCube;   // pressed Ctrl
 
-        Keybindings Keybinds;
+        Keybindings Keybinds = new Keybindings();
 
         bool AltHighlight=false;
         bool[] NColMask;
@@ -1747,25 +1746,13 @@ namespace _3dedit
 			}
 		}
 
-        private void KeyPressEvt(object sender, KeyPressEventArgs e)
-        {
-            string key = char.ToUpper(e.KeyChar).ToString();
-            var action = Keybinds.GetAction(key);
-
-            if (action == null) return;
-
-            bool redraw = false, didTwist = false;
-            action.OnKeyPress(ref Cube, ref redraw, ref didTwist);
-            PostKeybindAction(redraw, didTwist);
-        }
-
         private void KeyDownEvt(object sender, KeyEventArgs e)
         {
-            string key = ((char)e.KeyValue).ToString();
+            string key = e.KeyCode.ToString();
             var action = Keybinds.GetAction(key);
+            Console.WriteLine($"{key}");
 
             if (action == null) return;
-
 
             bool redraw = false, didTwist = false;
             action.OnKeyDown(ref Cube, ref redraw, ref didTwist);
@@ -1774,11 +1761,10 @@ namespace _3dedit
 
         private void KeyUpEvt(object sender, KeyEventArgs e)
         {
-            string key = ((char)e.KeyValue).ToString();
+            string key = e.KeyCode.ToString();
             var action = Keybinds.GetAction(key);
 
             if (action == null) return;
-
 
             bool redraw = false, didTwist = false;
             action.OnKeyUp(ref Cube, ref redraw, ref didTwist);
@@ -2048,8 +2034,6 @@ namespace _3dedit
             Cube=new Cube7D();
             Cube.Init(GetSize(),GetDim());
             qSolved=true;
-
-            Keybinds = new Keybindings();
 
             if(Macros==null || !Macros.CheckSize(GetDim(),GetSize())) {
                 Macros=new CMacroFile(GetDim(),GetSize());
