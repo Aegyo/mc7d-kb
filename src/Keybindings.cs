@@ -175,6 +175,9 @@ namespace _3dedit
                         case "GripTwist":
                             action = new GripTwist();
                             break;
+                        case "Twist2c":
+                            action = new Twist2c();
+                            break;
                     }
 
                     if (action != null)
@@ -391,6 +394,79 @@ namespace _3dedit
                 Int32.TryParse(p[3], out int mask);
                 this.grip.layerMask = mask;
                 this.grip.axis = Axis.fromString[p[2]];
+            }
+        }
+
+        public class Twist2c : IAction
+        {
+            public Axis axis;
+            public bool negative;
+
+
+            public Twist2c()
+            {
+                this.axis = Axis.X;
+                this.negative = false;
+            }
+            public Twist2c(Axis axis, bool negative)
+            {
+                this.axis = axis;
+                this.negative = negative;
+            }
+
+            public bool OnKeyPress(ref Cube7D Cube)
+            {
+                return false;
+            }
+            public bool OnKeyDown(ref Cube7D Cube)
+            {
+                Twist t = Cube.partialTwist;
+
+                if (t.fromAxis == null)
+                {
+                    t.fromAxis = this.axis;
+                }
+                else
+                {
+                    t.toAxis = this.axis;
+                }
+
+                if (this.negative)
+                {
+                    Axis tmp = t.toAxis;
+                    t.toAxis = t.fromAxis;
+                    t.fromAxis = tmp;
+                }
+
+                if (t.toAxis != null && t.fromAxis != null)
+                {
+                    t.OnKeyPress(ref Cube);
+                    t.toAxis = null;
+                    t.fromAxis = null;
+                    return true;
+                }
+
+                return false;
+            }
+            public bool OnKeyUp(ref Cube7D Cube)
+            {
+                return false;
+            }
+
+            public string Serialize()
+            {
+                return $"Twist2c,{(this.negative ? "-" : "+")},{axis.name}";
+            }
+            public void Deserialize(string s)
+            {
+                string[] p = s.Split(',');
+                if (p[1] != "Twist2c" || !Axis.fromString.ContainsKey(p[3]))
+                {
+                    throw new Exception($"Invalid GripTwist: {s}");
+                }
+
+                this.axis = Axis.fromString[p[3]];
+                this.negative = p[2] == "-";
             }
         }
 

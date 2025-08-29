@@ -25,6 +25,7 @@ namespace _3dedit {
         int[] DimStat; // 0 - center, 1 - main, 2 - secondary
 
         public int[] Gripped;
+        public Keybindings.Twist partialTwist;
 
         public short[] Seq;
         public int LSeq,LPtr,LShuffle;
@@ -64,6 +65,7 @@ namespace _3dedit {
             for(int i=1;i<D;i++) DimStat[i]=i<4 ? 1 : 2;
 
             Gripped = new int[2] { -1, 1 };
+            partialTwist = new Keybindings.Twist();
 
             SetCoords();
             InitCube();
@@ -286,6 +288,12 @@ namespace _3dedit {
 
             Gripped[0] = f0;
             Gripped[1] = m0;
+
+            if (Gripped[0] == -1)
+            {
+                partialTwist.toAxis = null;
+                partialTwist.fromAxis = null;
+            }
         }
 
         public bool Twist(int f0,int f1,int f2,int m0) {
