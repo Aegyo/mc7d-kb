@@ -18,30 +18,30 @@ namespace _3dedit
             { "5D_2key",  new KeybindSet(new Dictionary<string, IAction> {
                 { "D", new Grip(Axis.W, 1) },
                 { "V", new Grip(Axis.W, -1) },
-                { "W", new Grip(Axis.X, 1) },
-                { "F", new Grip(Axis.X, -1) },
+                { "F", new Grip(Axis.X, 1) },
+                { "W", new Grip(Axis.X, -1) },
                 { "E", new Grip(Axis.Y, 1) },
                 { "C", new Grip(Axis.Y, -1) },
-                { "S", new Grip(Axis.Z, -1) },
                 { "R", new Grip(Axis.Z, 1) },
-                { "A", new Grip(Axis.V, 1) },
-                { "G", new Grip(Axis.V, -1) },
+                { "S", new Grip(Axis.Z, -1) },
+                { "G", new Grip(Axis.V, 1) },
+                { "A", new Grip(Axis.V, -1) },
                 { "X", new Grip(Axis.W, 0b11111) },
 
-                { "J", new Twist(Axis.X, Axis.Z) },
-                { "L", new Twist(Axis.Z, Axis.X) },
+                { "J", new Twist(Axis.Z, Axis.X) },
+                { "L", new Twist(Axis.X, Axis.Z) },
 
                 { "K", new Twist(Axis.Z, Axis.Y) },
                 { "I", new Twist(Axis.Y, Axis.Z) },
 
-                { "U", new Twist(Axis.Y, Axis.X) },
-                { "O", new Twist(Axis.X, Axis.Y) },
+                { "U", new Twist(Axis.X, Axis.Y) },
+                { "O", new Twist(Axis.Y, Axis.X) },
 
                 { "Y", new Twist(Axis.V, Axis.Y) },
                 { "H", new Twist(Axis.Y, Axis.V) },
 
-                { "M", new Twist(Axis.V, Axis.X) },
-                { "Oemcomma", new Twist(Axis.X, Axis.V) },
+                { "M", new Twist(Axis.X, Axis.V) },
+                { "Oemcomma", new Twist(Axis.V, Axis.X) },
 
                 { "N", new Twist(Axis.Z, Axis.V) },
                 { "OemPeriod", new Twist(Axis.V, Axis.Z) },
@@ -56,24 +56,25 @@ namespace _3dedit
             { "Default_3key", new KeybindSet(new Dictionary<string, IAction>{
                 { "D", new Grip(Axis.W, 1) },
                 { "V", new Grip(Axis.W, -1) },
-                { "W", new Grip(Axis.X, 1) },
-                { "F", new Grip(Axis.X, -1) },
+                { "F", new Grip(Axis.X, 1) },
+                { "W", new Grip(Axis.X, -1) },
                 { "E", new Grip(Axis.Y, 1) },
                 { "C", new Grip(Axis.Y, -1) },
-                { "S", new Grip(Axis.Z, -1) },
                 { "R", new Grip(Axis.Z, 1) },
-                { "A", new Grip(Axis.V, 1) },
-                { "G", new Grip(Axis.V, -1) },
-                { "Q", new Grip(Axis.U, 1) },
-                { "T", new Grip(Axis.U, -1) },
-                { "Z", new Grip(Axis.T, 1) },
-                { "B", new Grip(Axis.T, -1) },
+                { "S", new Grip(Axis.Z, -1) },
+                { "G", new Grip(Axis.V, 1) },
+                { "A", new Grip(Axis.V, -1) },
+                { "T", new Grip(Axis.U, 1) },
+                { "Q", new Grip(Axis.U, -1) },
+                { "B", new Grip(Axis.T, 1) },
+                { "Z", new Grip(Axis.T, -1) },
                 { "X", new Grip(Axis.W, 0b11111) },
 
-                { "L", new Twist2c(Axis.X, true) },
+                { "L", new Twist2c(Axis.X, false) },
                 { "K", new Twist2c(Axis.Y, false) },
                 { "J", new Twist2c(Axis.Z, true) },
-                { "O", new Twist2c(Axis.V, true) },
+                { "H", new Twist2c(Axis.W, false) },
+                { "O", new Twist2c(Axis.V, false) },
                 { "I", new Twist2c(Axis.U, false) },
                 { "U", new Twist2c(Axis.T, false) },
 
@@ -143,7 +144,7 @@ namespace _3dedit
 
         public class Axis
         {
-            public static readonly Axis X = new Axis("X", 2), Y = new Axis("Y", 4), Z = new Axis("Z", 3), W = new Axis("W", 1), V = new Axis("V", 5), U = new Axis("U", 6), T = new Axis("T", 7);
+            public static readonly Axis X = new Axis("X", 2, true), Y = new Axis("Y", 4), Z = new Axis("Z", 3), W = new Axis("W", 1), V = new Axis("V", 5, true), U = new Axis("U", 6), T = new Axis("T", 7);
             public static readonly Dictionary<string, Axis> fromString = new Dictionary<string, Axis>()
             {
                 { "X", X },
@@ -157,11 +158,19 @@ namespace _3dedit
 
             public string name;
             public int idx;
+            public bool inverted;
 
             public Axis(string name, int idx)
             {
                 this.name = name;
                 this.idx = idx;
+                this.inverted = false;
+            }
+            public Axis(string name, int idx, bool inverted)
+            {
+                this.name = name;
+                this.idx = idx;
+                this.inverted = inverted;
             }
         }
 
@@ -266,28 +275,33 @@ namespace _3dedit
                     return;
                 }
 
-                int from = fromAxis.idx;
-                int to = toAxis.idx;
+                Axis from = fromAxis;
+                Axis to = toAxis;
                 bool flip = false;
+                int gripAxisIdx = Cube.Gripped[0];
 
-                if (Cube.Gripped[0] == from)
+                if (gripAxisIdx == from.idx)
                 {
-                    from = Cube.Gripped[0] == Axis.W.idx ? Axis.V.idx : Axis.W.idx;
+                    from = gripAxisIdx == Axis.W.idx ? Axis.V : Axis.W;
                     flip = true;
                 }
-                if (Cube.Gripped[0] == to)
+                if (gripAxisIdx == to.idx)
                 {
-                    to = Cube.Gripped[0] == Axis.W.idx ? Axis.V.idx : Axis.W.idx;
+                    to = gripAxisIdx == Axis.W.idx ? Axis.V : Axis.W;
                     flip = true;
                 }
-                if (flip && Cube.Gripped[1] == 1 && Cube.Gripped[0] < 4)
+
+                bool grippingPos = ((Cube.Gripped[1] & 1) == 1) ^ (gripAxisIdx == Axis.X.idx || gripAxisIdx == Axis.V.idx);
+                flip = flip && grippingPos && Cube.Gripped[0] < 5;
+
+                if (flip ^ from.inverted ^ to.inverted)
                 {
-                    int tmp = from;
+                    Axis tmp = from;
                     from = to;
                     to = tmp;
                 }
 
-                Cube.TwistGrip(from, to);
+                Cube.TwistGrip(from.idx, to.idx);
 
                 redraw = true;
                 didTwist = true;
@@ -325,7 +339,7 @@ namespace _3dedit
             }
             public Grip(Axis axis, int layerMask){
                 this.axis = axis;
-                this.layerMask = layerMask;
+                this.layerMask = axis.inverted ? -layerMask : layerMask;
             }
 
 

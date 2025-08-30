@@ -251,7 +251,7 @@ namespace _3dedit {
             return NStk;
         }
 
-        int reverse(int m) {
+        public int reverse(int m) {
             int m1=0;
             for(int i=0;i<N;i++) {
                 m1=(m1<<1)+(m&1);
