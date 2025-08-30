@@ -141,6 +141,8 @@ namespace _3dedit
         private ToolStripStatusLabel m_lblCTime;
         private CheckBox m_RunByClick;
         private ToolStripDropDownButton activeKeybind;
+        private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem editKeybinds;
         private System.ComponentModel.IContainer components;
 
 		public Form1() {
@@ -324,6 +326,8 @@ namespace _3dedit
             this.commutatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.editKeybinds = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_trkFullUndoSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_trkTransparency)).BeginInit();
@@ -1241,7 +1245,7 @@ namespace _3dedit
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(729, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(729, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1306,7 +1310,9 @@ namespace _3dedit
             this.mi_FullRedo,
             this.stopToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.recalculateToolStripMenuItem});
+            this.recalculateToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.editKeybinds});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Edit";
@@ -1315,14 +1321,14 @@ namespace _3dedit
             // 
             this.mi_Reset.Name = "mi_Reset";
             this.mi_Reset.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.mi_Reset.Size = new System.Drawing.Size(205, 26);
+            this.mi_Reset.Size = new System.Drawing.Size(224, 26);
             this.mi_Reset.Text = "Reset";
             this.mi_Reset.Click += new System.EventHandler(this.mi_Reset_Click);
             // 
             // mi_FullScramble
             // 
             this.mi_FullScramble.Name = "mi_FullScramble";
-            this.mi_FullScramble.Size = new System.Drawing.Size(205, 26);
+            this.mi_FullScramble.Size = new System.Drawing.Size(224, 26);
             this.mi_FullScramble.Text = "Full Scramble";
             this.mi_FullScramble.Click += new System.EventHandler(this.mi_FullScramble_Click);
             // 
@@ -1335,7 +1341,7 @@ namespace _3dedit
             this.mi_Scramble4,
             this.mi_Scramble5});
             this.mi_ScrambleNTurns.Name = "mi_ScrambleNTurns";
-            this.mi_ScrambleNTurns.Size = new System.Drawing.Size(205, 26);
+            this.mi_ScrambleNTurns.Size = new System.Drawing.Size(224, 26);
             this.mi_ScrambleNTurns.Text = "Scramble N turns";
             // 
             // mi_Scramble1
@@ -1376,13 +1382,13 @@ namespace _3dedit
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // mi_Undo
             // 
             this.mi_Undo.Name = "mi_Undo";
             this.mi_Undo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mi_Undo.Size = new System.Drawing.Size(205, 26);
+            this.mi_Undo.Size = new System.Drawing.Size(224, 26);
             this.mi_Undo.Text = "Undo";
             this.mi_Undo.Click += new System.EventHandler(this.mi_Undo_Click);
             // 
@@ -1390,21 +1396,21 @@ namespace _3dedit
             // 
             this.mi_Redo.Name = "mi_Redo";
             this.mi_Redo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mi_Redo.Size = new System.Drawing.Size(205, 26);
+            this.mi_Redo.Size = new System.Drawing.Size(224, 26);
             this.mi_Redo.Text = "Redo";
             this.mi_Redo.Click += new System.EventHandler(this.mi_Redo_Click);
             // 
             // mi_FullUndo
             // 
             this.mi_FullUndo.Name = "mi_FullUndo";
-            this.mi_FullUndo.Size = new System.Drawing.Size(205, 26);
+            this.mi_FullUndo.Size = new System.Drawing.Size(224, 26);
             this.mi_FullUndo.Text = "Full Undo";
             this.mi_FullUndo.Click += new System.EventHandler(this.mi_FullUndo_Click);
             // 
             // mi_FullRedo
             // 
             this.mi_FullRedo.Name = "mi_FullRedo";
-            this.mi_FullRedo.Size = new System.Drawing.Size(205, 26);
+            this.mi_FullRedo.Size = new System.Drawing.Size(224, 26);
             this.mi_FullRedo.Text = "Full Redo";
             this.mi_FullRedo.Click += new System.EventHandler(this.mi_FullRedo_Click);
             // 
@@ -1412,19 +1418,19 @@ namespace _3dedit
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(221, 6);
             // 
             // recalculateToolStripMenuItem
             // 
             this.recalculateToolStripMenuItem.Name = "recalculateToolStripMenuItem";
-            this.recalculateToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.recalculateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.recalculateToolStripMenuItem.Text = "Recalculate";
             this.recalculateToolStripMenuItem.Click += new System.EventHandler(this.recalculateToolStripMenuItem_Click);
             // 
@@ -1598,6 +1604,18 @@ namespace _3dedit
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
+            // 
+            // editKeybinds
+            // 
+            this.editKeybinds.Name = "editKeybinds";
+            this.editKeybinds.Size = new System.Drawing.Size(224, 26);
+            this.editKeybinds.Text = "Edit Keybinds";
+            this.editKeybinds.Click += new System.EventHandler(this.editKeybinds_Click);
+            // 
             // Form1
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
@@ -1675,6 +1693,7 @@ namespace _3dedit
         bool RotateCube;   // pressed Ctrl
 
         Keybindings Keybinds = new Keybindings();
+        Form KeybindsSetup;
 
         bool AltHighlight=false;
         bool[] NColMask;
@@ -2895,6 +2914,17 @@ namespace _3dedit
                 Redraw();
             }
 
+        }
+
+        private void editKeybinds_Click(object sender, EventArgs e)
+        {
+            if (KeybindsSetup == null || KeybindsSetup.IsDisposed)
+            {
+                KeybindsSetup = new KeybindSetup(this.Keybinds);
+            }
+            KeybindsSetup.Show();
+            KeybindsSetup.Focus();
+            KeybindsSetup.WindowState = FormWindowState.Normal;
         }
 
     }

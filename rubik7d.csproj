@@ -162,6 +162,12 @@
     <Compile Include="src\CMacroFile.cs" />
     <Compile Include="src\Cube7D.cs" />
     <Compile Include="src\ImportMC4D.cs" />
+    <Compile Include="src\KeybindSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\KeybindSetup.Designer.cs">
+      <DependentUpon>KeybindSetup.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\rubik7d.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +222,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\KeybindSetup.resx">
+      <DependentUpon>KeybindSetup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\rubik7d.resx">
       <DependentUpon>rubik7d.cs</DependentUpon>
