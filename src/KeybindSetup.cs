@@ -33,13 +33,23 @@ namespace _3dedit
 
         private void SetLayout(string name)
         {
-            if (!keybinds.keybinds.ContainsKey(name)) return;
+            Control addButton = keybindsPanel.Controls[keybindsPanel.Controls.Count - 1];
+
+            if (!keybinds.keybinds.ContainsKey(name))
+            {
+                this.Text = "Keybinds Setup";
+                curKeybindsName = "";
+                curKeybinds = null;
+                keybindsPanel.Controls.Clear();
+                keybindsPanel.Controls.Add(addButton);
+
+                return;
+            }
 
             curKeybindsName = name;
             curKeybinds = keybinds.keybinds[name];
             this.Text = $"Keybinds Setup - {name}";
 
-            Control addButton = keybindsPanel.Controls[keybindsPanel.Controls.Count - 1];
             keybindsPanel.Controls.Clear();
             foreach (var item in curKeybinds.binds)
             {
@@ -125,6 +135,7 @@ namespace _3dedit
         {
             Button btn = new Button();
             btn.Text = name;
+            btn.Name = name;
             btn.Click += new System.EventHandler(this.SwitchLayout_Click);
             btn.Width = addNewLayout.Width;
 
@@ -142,12 +153,43 @@ namespace _3dedit
 
         private void AddNewLayout_Click(object sender, EventArgs e)
         {
-            CreateLayoutButton("Temp Name");
+            TextDialog td = new TextDialog("Enter Layout Name");
+            DialogResult res = td.ShowDialog(this);
+            if (res.Equals(DialogResult.OK))
+            {
+                string name = td.Value.Replace(' ', '_').Replace(',', '_');
+                if (name.Length > 0 && keybinds.keybinds.ContainsKey(name))
+                {
+                    MessageBox.Show($"Layout already exists with that name ({name})");
+                    return;
+                }
+
+                CreateLayoutButton(name);
+                keybinds.keybinds.Add(name, new Keybindings.KeybindSet());
+            }
         }
 
         private void DeleteLayout_Click(object sender, EventArgs e)
         {
+            if (curKeybindsName == "")
+            {
+                MessageBox.Show("No layout selected");
+                return;
+            }
 
+            var confirmResult = MessageBox.Show($"Are you sure you want to delete keybind layout \"{curKeybindsName}\"?",
+                                    "Confirm Delete",
+                                    MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                keybinds.keybinds.Remove(curKeybindsName);
+                Control[] res = this.keybindSetsPanel.Controls.Find(curKeybindsName, false);
+                foreach (var item in res)
+                {
+                    keybindSetsPanel.Controls.Remove(item);
+                }
+                SetLayout("");
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
