@@ -17,15 +17,15 @@ namespace _3dedit
         public static Dictionary<string, KeybindSet> defaultBinds = new Dictionary<string, KeybindSet> {
             { "5D_2key",  new KeybindSet(new Dictionary<string, IAction> {
                 { "D", new Grip(Axis.W, 1) },
-                { "V", new Grip(Axis.W, 4) },
+                { "V", new Grip(Axis.W, -1) },
                 { "S", new Grip(Axis.X, 1) },
-                { "F", new Grip(Axis.X, 4) },
+                { "F", new Grip(Axis.X, -1) },
                 { "E", new Grip(Axis.Y, 1) },
-                { "C", new Grip(Axis.Y, 4) },
-                { "W", new Grip(Axis.Z, 4) },
+                { "C", new Grip(Axis.Y, -1) },
+                { "W", new Grip(Axis.Z, -1) },
                 { "R", new Grip(Axis.Z, 1) },
                 { "A", new Grip(Axis.V, 1) },
-                { "G", new Grip(Axis.V, 4) },
+                { "G", new Grip(Axis.V, -1) },
                 { "X", new Grip(Axis.W, 0b11111) },
 
                 { "J", new Twist(Axis.X, Axis.Z) },
@@ -55,19 +55,19 @@ namespace _3dedit
             })},
             { "Default_3key", new KeybindSet(new Dictionary<string, IAction>{
                 { "D", new Grip(Axis.W, 1) },
-                { "V", new Grip(Axis.W, 4) },
+                { "V", new Grip(Axis.W, -1) },
                 { "S", new Grip(Axis.X, 1) },
-                { "F", new Grip(Axis.X, 4) },
+                { "F", new Grip(Axis.X, -1) },
                 { "E", new Grip(Axis.Y, 1) },
-                { "C", new Grip(Axis.Y, 4) },
-                { "W", new Grip(Axis.Z, 4) },
+                { "C", new Grip(Axis.Y, -1) },
+                { "W", new Grip(Axis.Z, -1) },
                 { "R", new Grip(Axis.Z, 1) },
                 { "A", new Grip(Axis.V, 1) },
-                { "G", new Grip(Axis.V, 4) },
+                { "G", new Grip(Axis.V, -1) },
                 { "Q", new Grip(Axis.U, 1) },
-                { "T", new Grip(Axis.U, 4) },
+                { "T", new Grip(Axis.U, -1) },
                 { "Z", new Grip(Axis.T, 1) },
-                { "B", new Grip(Axis.T, 4) },
+                { "B", new Grip(Axis.T, -1) },
                 { "X", new Grip(Axis.W, 0b11111) },
 
                 { "L", new Twist2c(Axis.X, true) },
@@ -336,7 +336,8 @@ namespace _3dedit
             }
             public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
-                if (Cube.Gripped[0] == axis.idx && Cube.Gripped[1] == layerMask)
+                int m0 = Cube.NormGripMask(layerMask);
+                if (Cube.Gripped[0] == axis.idx && Cube.Gripped[1] == m0)
                 {
                     Cube.Grip(-1, 1);
                     redraw = true;

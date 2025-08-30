@@ -282,7 +282,13 @@ namespace _3dedit {
             return Twist(f0, f1, f2, GetLayerMask());
         }
 
+        public int NormGripMask(int m0)
+        {
+            return m0 < 0 ? reverse(-m0) : m0;
+        }
         public void Grip(int f0, int m0) {
+            m0 = NormGripMask(m0);
+
             if (Gripped[0] == f0 && Gripped[1] == m0)
             {
                 Gripped[0] = -1;
@@ -362,7 +368,7 @@ namespace _3dedit {
                 res |= item.layerMask;
             }
 
-            if ((Gripped[1]&4) != 0)
+            if ((Gripped[1]&reverse(1)) != 0)
             {
                 res = reverse(res);
             }
@@ -486,7 +492,7 @@ namespace _3dedit {
         {
             int[] ng = NormGrip();
             int f0 = ng[0];
-            if ((ng[1]&4) == 0)
+            if ((ng[1]&reverse(1)) == 0)
             {
                 f0 = -f0;
             }
