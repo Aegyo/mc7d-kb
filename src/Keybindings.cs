@@ -280,7 +280,7 @@ namespace _3dedit
                     to = Cube.Gripped[0] == Axis.W.idx ? Axis.V.idx : Axis.W.idx;
                     flip = true;
                 }
-                if (flip && Cube.Gripped[1] == 1)
+                if (flip && Cube.Gripped[1] == 1 && Cube.Gripped[0] < 4)
                 {
                     int tmp = from;
                     from = to;
