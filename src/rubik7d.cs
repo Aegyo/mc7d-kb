@@ -1750,7 +1750,6 @@ namespace _3dedit
         {
             string key = e.KeyCode.ToString();
             var action = Keybinds.GetAction(key);
-            Console.WriteLine($"{key}");
 
             if (action == null) return;
 
