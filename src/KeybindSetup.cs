@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -69,7 +70,6 @@ namespace _3dedit
                 WrapContents = false,
             };
 
-            var boundKey = key;
             TextBox textBox = new TextBox
             {
                 Text = key,
@@ -84,12 +84,13 @@ namespace _3dedit
                 if (curKeybinds.binds.ContainsKey(tb.Text))
                 {
                     MessageBox.Show($"{tb.Text} is already bound to {curKeybinds.binds[tb.Text].Serialize()}");
-                    tb.Text = boundKey;
+                    tb.Text = key;
                 }
                 else
                 {
-                    curKeybinds.binds.Remove(boundKey);
+                    curKeybinds.binds.Remove(key);
                     curKeybinds.binds.Add(tb.Text, action);
+                    key = tb.Text;
                 }
             };
 
@@ -105,6 +106,7 @@ namespace _3dedit
             FlowLayoutPanel extra = new FlowLayoutPanel
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
+                Margin = new Padding(0),
             };
             var extras = action.SetupControls();
             extra.Controls.AddRange(extras);
@@ -120,13 +122,35 @@ namespace _3dedit
                 extra.Controls.Clear();
                 extra.Controls.AddRange(action.SetupControls());
 
-                curKeybinds.binds[textBox.Text] = action;
+                if (textBox.Text != "")
+                {
+                    curKeybinds.binds[textBox.Text] = action;
+                }
             };
 
+            Button delete = new Button
+            {
+                Size = new Size { Height = 20, Width = 20 },
+                Text = "×",
+            };
+            delete.Click += (object sender, EventArgs e) =>
+            {
+                var confirmResult = MessageBox.Show($"Are you sure you want to delete {comboBox.SelectedItem} keybind for \"{key}\"?",
+                                    "Confirm Delete",
+                                    MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    if (curKeybinds.binds.ContainsKey(key)) curKeybinds.binds.Remove(key);
+                    keybindsPanel.Controls.Remove(panel);
+                }
+            };
 
-            panel.Controls.Add(textBox);
-            panel.Controls.Add(comboBox);
-            panel.Controls.Add(extra);
+            panel.Controls.AddRange(new Control[] { 
+                delete,
+                textBox,
+                comboBox,
+                extra
+            });
 
             return panel;
         }
@@ -190,6 +214,24 @@ namespace _3dedit
                 }
                 SetLayout("");
             }
+        }
+
+        private void AddKeybind_Click(object sender, EventArgs e)
+        {
+            if (curKeybindsName == "")
+            {
+                MessageBox.Show("No layout selected");
+                return;
+            }
+
+            Control addButton = keybindsPanel.Controls[keybindsPanel.Controls.Count - 1];
+
+            var action = new Keybindings.Twist();
+            Control panel = CreateKeybindPanel("", action);
+
+            keybindsPanel.Controls.Remove(addButton);
+            keybindsPanel.Controls.Add(panel);
+            keybindsPanel.Controls.Add(addButton);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

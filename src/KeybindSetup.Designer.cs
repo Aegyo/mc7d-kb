@@ -31,18 +31,13 @@
             this.keybindSetsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.addNewLayout = new System.Windows.Forms.Button();
             this.keybindsPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.DeleteLayout = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.addKeybind = new System.Windows.Forms.Button();
+            this.DeleteLayout = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.keybindSetsPanel.SuspendLayout();
             this.keybindsPanel.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // keybindSetsPanel
@@ -84,6 +79,26 @@
             this.keybindsPanel.TabIndex = 1;
             this.keybindsPanel.WrapContents = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.addKeybind);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(573, 28);
+            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // addKeybind
+            // 
+            this.addKeybind.Location = new System.Drawing.Point(3, 3);
+            this.addKeybind.Name = "addKeybind";
+            this.addKeybind.Size = new System.Drawing.Size(118, 24);
+            this.addKeybind.TabIndex = 2;
+            this.addKeybind.Text = "Add Keybind";
+            this.addKeybind.UseVisualStyleBackColor = true;
+            this.addKeybind.Click += new System.EventHandler(this.AddKeybind_Click);
+            // 
             // DeleteLayout
             // 
             this.DeleteLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -95,62 +110,14 @@
             this.DeleteLayout.UseVisualStyleBackColor = true;
             this.DeleteLayout.Click += new System.EventHandler(this.DeleteLayout_Click);
             // 
-            // flowLayoutPanel1
+            // button1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.textBox1);
-            this.flowLayoutPanel1.Controls.Add(this.comboBox1);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(573, 28);
-            this.flowLayoutPanel1.TabIndex = 0;
-            this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(94, 22);
-            this.textBox1.TabIndex = 1;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 2;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.numericUpDown1);
-            this.flowLayoutPanel2.Controls.Add(this.checkBox1);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(230, 3);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(349, 22);
-            this.flowLayoutPanel2.TabIndex = 3;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(3, 3);
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            15,
-            0,
-            0,
-            -2147483648});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 22);
-            this.numericUpDown1.TabIndex = 0;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(129, 3);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(95, 20);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(127, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(24, 24);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "×";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // KeybindSetup
             // 
@@ -166,10 +133,6 @@
             this.keybindSetsPanel.ResumeLayout(false);
             this.keybindsPanel.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -181,10 +144,7 @@
         private System.Windows.Forms.FlowLayoutPanel keybindsPanel;
         private System.Windows.Forms.Button DeleteLayout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button addKeybind;
+        private System.Windows.Forms.Button button1;
     }
 }
