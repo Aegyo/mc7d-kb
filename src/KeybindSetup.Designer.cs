@@ -34,10 +34,10 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.addKeybind = new System.Windows.Forms.Button();
             this.DeleteLayout = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.keybindSetsPanel.SuspendLayout();
             this.keybindsPanel.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // keybindSetsPanel
@@ -50,7 +50,7 @@
             this.keybindSetsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.keybindSetsPanel.Location = new System.Drawing.Point(12, 12);
             this.keybindSetsPanel.Name = "keybindSetsPanel";
-            this.keybindSetsPanel.Size = new System.Drawing.Size(195, 383);
+            this.keybindSetsPanel.Size = new System.Drawing.Size(195, 431);
             this.keybindSetsPanel.TabIndex = 0;
             this.keybindSetsPanel.WrapContents = false;
             // 
@@ -72,20 +72,20 @@
             this.keybindsPanel.AutoScroll = true;
             this.keybindsPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.keybindsPanel.Controls.Add(this.flowLayoutPanel1);
+            this.keybindsPanel.Controls.Add(this.flowLayoutPanel2);
             this.keybindsPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.keybindsPanel.Location = new System.Drawing.Point(213, 12);
             this.keybindsPanel.Name = "keybindsPanel";
-            this.keybindsPanel.Size = new System.Drawing.Size(588, 383);
+            this.keybindsPanel.Size = new System.Drawing.Size(625, 431);
             this.keybindsPanel.TabIndex = 1;
             this.keybindsPanel.WrapContents = false;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.addKeybind);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
+            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(573, 28);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -93,7 +93,7 @@
             // 
             this.addKeybind.Location = new System.Drawing.Point(3, 3);
             this.addKeybind.Name = "addKeybind";
-            this.addKeybind.Size = new System.Drawing.Size(118, 24);
+            this.addKeybind.Size = new System.Drawing.Size(128, 24);
             this.addKeybind.TabIndex = 2;
             this.addKeybind.Text = "Add Keybind";
             this.addKeybind.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             // DeleteLayout
             // 
             this.DeleteLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DeleteLayout.Location = new System.Drawing.Point(679, 410);
+            this.DeleteLayout.Location = new System.Drawing.Point(716, 458);
             this.DeleteLayout.Name = "DeleteLayout";
             this.DeleteLayout.Size = new System.Drawing.Size(122, 30);
             this.DeleteLayout.TabIndex = 3;
@@ -110,20 +110,20 @@
             this.DeleteLayout.UseVisualStyleBackColor = true;
             this.DeleteLayout.Click += new System.EventHandler(this.DeleteLayout_Click);
             // 
-            // button1
+            // flowLayoutPanel2
             // 
-            this.button1.Location = new System.Drawing.Point(127, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(24, 24);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "×";
-            this.button1.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.Controls.Add(this.addKeybind);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 9);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(134, 30);
+            this.flowLayoutPanel2.TabIndex = 3;
             // 
             // KeybindSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 452);
+            this.ClientSize = new System.Drawing.Size(850, 500);
             this.Controls.Add(this.DeleteLayout);
             this.Controls.Add(this.keybindsPanel);
             this.Controls.Add(this.keybindSetsPanel);
@@ -132,7 +132,8 @@
             this.Load += new System.EventHandler(this.KeybindSetup_Load);
             this.keybindSetsPanel.ResumeLayout(false);
             this.keybindsPanel.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.keybindsPanel.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -145,6 +146,6 @@
         private System.Windows.Forms.Button DeleteLayout;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button addKeybind;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

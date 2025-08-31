@@ -341,7 +341,7 @@ namespace _3dedit
                     Anchor = AnchorStyles.Left | AnchorStyles.Top,
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     ItemHeight = 24,
-                    Name = "fromAxis",
+                    Name = "Twist fromAxis",
                     Size = new Size(48, 30),
                 };
                 fromComboBox.Items.AddRange(axes);
@@ -356,7 +356,7 @@ namespace _3dedit
                     Anchor = AnchorStyles.Left | AnchorStyles.Top,
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     ItemHeight = 24,
-                    Name = "toAxis",
+                    Name = "Twist toAxis",
                     Size = new Size(48, 30),
                 };
                 toComboBox.Items.AddRange(axes);
@@ -431,7 +431,7 @@ namespace _3dedit
                     Anchor = AnchorStyles.Left | AnchorStyles.Top,
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     ItemHeight = 24,
-                    Name = "toAxis",
+                    Name = "Grip toAxis",
                     Size = new Size(48, 30),
                 };
                 axisComboBox.Items.AddRange(Axis.fromString.Keys.ToArray());
@@ -446,6 +446,7 @@ namespace _3dedit
 
                 NumericUpDown layerInput = new NumericUpDown
                 {
+                    Anchor = AnchorStyles.Top | AnchorStyles.Left,
                     Width = 48,
                     Minimum = -31,
                     Maximum = 31,
@@ -525,8 +526,13 @@ namespace _3dedit
             public Control[] SetupControls()
             {
                 var twistControls = this.twist.SetupControls();
+                Splitter split = new Splitter()
+                {
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Cursor = Cursors.Default,
+                };
                 var gripControls = this.grip.SetupControls();
-                return gripControls.Concat(twistControls).ToArray();
+                return gripControls.Concat(new Control[] { split }).Concat(twistControls).ToArray();
             }
         }
 
@@ -603,7 +609,7 @@ namespace _3dedit
                     Anchor = AnchorStyles.Left | AnchorStyles.Top,
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     ItemHeight = 24,
-                    Name = "toAxis",
+                    Name = "Twist2c toAxis",
                     Size = new Size(48, 30),
                 };
                 axisComboBox.Items.AddRange(Axis.fromString.Keys.ToArray());

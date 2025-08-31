@@ -21,6 +21,7 @@ namespace _3dedit
         {
             { "Grip", () => new Keybindings.Grip() },
             { "Twist", () => new Keybindings.Twist() },
+            { "GripTwist", () => new Keybindings.GripTwist() },
             { "Twist2c", () => new Keybindings.Twist2c() },
             { "Layer", () => new Keybindings.Layer() },
             { "Recenter", () => new Keybindings.Recenter() },
@@ -35,6 +36,11 @@ namespace _3dedit
         private void SetLayout(string name)
         {
             Control addButton = keybindsPanel.Controls[keybindsPanel.Controls.Count - 1];
+            foreach (Button btn in keybindSetsPanel.Controls)
+            {
+                btn.Enabled = true;
+                if (btn.Text == name) { btn.Enabled = false; }
+            }
 
             if (!keybinds.keybinds.ContainsKey(name))
             {
@@ -58,16 +64,18 @@ namespace _3dedit
                 keybindsPanel.Controls.Add(panel);
             }
             keybindsPanel.Controls.Add(addButton);
+            keybindsPanel.Focus();
         }
 
         private FlowLayoutPanel CreateKeybindPanel(string key, Keybindings.IAction action)
         {
             FlowLayoutPanel panel = new FlowLayoutPanel
             {
-                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 Name = key,
                 Height = 28,
                 WrapContents = false,
+                AutoSize = true,
             };
 
             TextBox textBox = new TextBox
@@ -107,6 +115,8 @@ namespace _3dedit
             {
                 Anchor = AnchorStyles.Top | AnchorStyles.Left,
                 Margin = new Padding(0),
+                WrapContents = false,
+                AutoSize = true,
             };
             var extras = action.SetupControls();
             extra.Controls.AddRange(extras);
