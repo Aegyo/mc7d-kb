@@ -2819,7 +2819,7 @@ namespace _3dedit
 
 
         private void aboutToolStripMenuItem_Click(object sender,EventArgs e) {
-            MessageBox.Show("MC7D v1.31\r\n(c)2010, Andrey Astrelin");
+            MessageBox.Show("Original:\r\nMC7D v1.31\r\n(c)2010, Andrey Astrelin\r\n\r\nMC7D-KB v0.8\r\n(c)2025, Jessica Chen");
         }
 
         private void startExtraTurnsToolStripMenuItem_Click(object sender,EventArgs e) {
