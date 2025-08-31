@@ -10,6 +10,8 @@
 
 MC7D-KB adds **keybind controls** to MC7D, allowing for a more pleasant speedsolving experience.
 
+[Download here](https://github.com/Aegyo/mc7d-kb/releases/latest)
+
 ---
 
 ## Features
