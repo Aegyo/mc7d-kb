@@ -121,21 +121,28 @@ namespace _3dedit
             return string.Join("\r\n", res.ToArray());
         }
 
-        public void LoadKeybindSet(string s)
+        public void LoadKeybindSet(string s, int idx)
         {
-            string[] p = s.Split(new string[] { " : " }, StringSplitOptions.None);
-            KeybindSet kbs = new KeybindSet();
-            kbs.Deserialize(p[1]);
-
-            if (keybinds.ContainsKey(p[0]))
+            try
             {
-                keybinds.Remove(p[0]);
+                string[] p = s.Split(new string[] { " : " }, StringSplitOptions.None);
+                KeybindSet kbs = new KeybindSet();
+                kbs.Deserialize(p[1], p[0]);
+
+                if (keybinds.ContainsKey(p[0]))
+                {
+                    keybinds.Remove(p[0]);
+                }
+                keybinds.Add(p[0], kbs);
+
+                if (keybinds.Count == 1 || activeKeybindsName == p[0])
+                {
+                    switchKeybindSet(p[0]);
+                }
             }
-            keybinds.Add(p[0], kbs);
-
-            if (keybinds.Count == 1 || activeKeybindsName == p[0])
+            catch (Exception e)
             {
-                switchKeybindSet(p[0]);
+                MessageBox.Show($"Error occured while loading keybind set on line {idx} of the keybinds file.\r\n{e.Message}");
             }
         }
         public bool switchKeybindSet(string name)
@@ -245,47 +252,54 @@ namespace _3dedit
                 return String.Join(" ", res.ToArray());
             }
 
-            public void Deserialize(string data)
+            public void Deserialize(string data, string keybindSetName)
             {
                 string[] p = data.Split(' ');
 
                 foreach (var item in p)
                 {
-                    string[] p2 = item.Split(',');
-                    if (item.Length < 2) continue;
-
-                    IAction action = null;
-
-                    switch (p2[1])
+                    try
                     {
-                        case "Grip":
-                            action = new Grip();
-                            break;
-                        case "Twist":
-                            action = new Twist();
-                            break;
-                        case "Recenter":
-                            action = new Recenter();
-                            break;
-                        case "GripTwist":
-                            action = new GripTwist();
-                            break;
-                        case "Twist2c":
-                            action = new Twist2c();
-                            break;
-                        case "Layer":
-                            action = new Layer();
-                            break;
-                        case "ChangeLayout":
-                            action = new ChangeLayout();
-                            break;
+                        string[] p2 = item.Split(',');
+                        if (p2.Length < 2) continue;
+
+                        IAction action = null;
+
+                        switch (p2[1])
+                        {
+                            case "Grip":
+                                action = new Grip();
+                                break;
+                            case "Twist":
+                                action = new Twist();
+                                break;
+                            case "Recenter":
+                                action = new Recenter();
+                                break;
+                            case "GripTwist":
+                                action = new GripTwist();
+                                break;
+                            case "Twist2c":
+                                action = new Twist2c();
+                                break;
+                            case "Layer":
+                                action = new Layer();
+                                break;
+                            case "ChangeLayout":
+                                action = new ChangeLayout();
+                                break;
+                        }
+
+                        if (action != null)
+                        {
+                            string k = p2[0];
+                            action.Deserialize(item);
+                            binds.Add(k, action);
+                        }
                     }
-
-                    if (action != null)
+                    catch (Exception e)
                     {
-                        string k = p2[0];
-                        action.Deserialize(item);
-                        binds.Add(k, action);
+                        MessageBox.Show($"Error occured while loading action for keybind set {keybindSetName ?? ""}: {item}\r\n{e.Message}");
                     }
                 }
             }

@@ -2528,12 +2528,15 @@ namespace _3dedit
                     string ln = sr.ReadLine();
                     if (ln != "MC7D Keybinds") return;
 
+                    int idx = 1;
+
                     for (; ; )
                     {
                         ln = sr.ReadLine();
+                        idx++;
                         if (ln == null) break;
 
-                        Keybinds.LoadKeybindSet(ln);
+                        Keybinds.LoadKeybindSet(ln, idx);
                     }
                 }
                 catch {
