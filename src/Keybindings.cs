@@ -13,6 +13,8 @@ namespace _3dedit
 
     public class Keybindings
     {
+        public static Keybindings loaded;
+
         public event EventHandler KeybindLayoutsChanged;
         public event EventHandler ActiveLayoutChanged;
 
@@ -273,6 +275,9 @@ namespace _3dedit
                             break;
                         case "Layer":
                             action = new Layer();
+                            break;
+                        case "ChangeLayout":
+                            action = new ChangeLayout();
                             break;
                     }
 
@@ -741,6 +746,61 @@ namespace _3dedit
                 layerInput.MouseWheel += (object sender, MouseEventArgs e) => ((HandledMouseEventArgs)e).Handled = true;
 
                 return new Control[] { layerInput };
+            }
+        }
+
+        public class ChangeLayout : IAction
+        {
+            public string layout;
+            public ChangeLayout()
+            {
+                this.layout = "";
+            }
+            public ChangeLayout(string layout)
+            {
+                this.layout = layout;
+            }
+
+            public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist) { }
+            public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
+            {
+                Keybindings.loaded.switchKeybindSet(this.layout);
+            }
+
+            public string Serialize()
+            {
+                return $"ChangeLayout,{layout}";
+            }
+            public void Deserialize(string s)
+            {
+                string[] p = s.Split(',');
+                if (p[1] != "ChangeLayout")
+                {
+                    throw new Exception($"Invalid ChangeLayout: {s}");
+                }
+
+                this.layout = p[2];
+            }
+            public Control[] SetupControls()
+            {
+                ComboBox layoutComboBox = new ComboBox
+                {
+                    Anchor = AnchorStyles.Left | AnchorStyles.Top,
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    ItemHeight = 24,
+                    Name = "layout",
+                    Size = new Size(96, 30),
+                };
+                layoutComboBox.Items.AddRange(Keybindings.loaded.keybinds.Keys.ToArray());
+                layoutComboBox.SelectedIndex = layoutComboBox.Items.IndexOf(this.layout);
+                layoutComboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
+                {
+                    this.layout = (string)((ComboBox)sender).SelectedItem;
+                };
+
+                layoutComboBox.MouseWheel += (object sender, MouseEventArgs e) => ((HandledMouseEventArgs)e).Handled = true;
+
+                return new Control[] { layoutComboBox };
             }
         }
     }

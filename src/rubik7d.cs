@@ -187,6 +187,7 @@ namespace _3dedit
             Keybinds.ActiveLayoutChanged += this.CheckKeybindSet;
             Keybinds.KeybindLayoutsChanged += this.UpdateKeybindMenu;
             this.UpdateKeybindMenu(null, EventArgs.Empty);
+            Keybindings.loaded = Keybinds;
         }
 
 		/// <summary>

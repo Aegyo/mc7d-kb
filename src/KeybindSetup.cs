@@ -25,6 +25,7 @@ namespace _3dedit
             { "Twist2c", () => new Keybindings.Twist2c() },
             { "Layer", () => new Keybindings.Layer() },
             { "Recenter", () => new Keybindings.Recenter() },
+            { "ChangeLayout", () => new Keybindings.ChangeLayout() },
         };
 
         public KeybindSetup(Keybindings keybinds)
@@ -127,7 +128,6 @@ namespace _3dedit
             comboBox.MouseWheel += (object sender, MouseEventArgs e) => ((HandledMouseEventArgs)e).Handled = true;
             comboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
             {
-                Console.WriteLine(comboBox.SelectedItem);
                 action = actionList[(string)comboBox.SelectedItem]();
                 extra.Controls.Clear();
                 extra.Controls.AddRange(action.SetupControls());
