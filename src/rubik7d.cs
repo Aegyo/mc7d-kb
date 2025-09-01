@@ -20,6 +20,8 @@ namespace _3dedit
 	/// Summary description for Form1.
 	/// </summary>
     public class Form1:System.Windows.Forms.Form {
+        public string VERSION = "v0.8.1";
+
 		private System.Windows.Forms.Splitter splitter1;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Panel panel2;
@@ -2827,7 +2829,7 @@ namespace _3dedit
 
 
         private void aboutToolStripMenuItem_Click(object sender,EventArgs e) {
-            MessageBox.Show("Original:\r\nMC7D v1.31\r\n(c)2010, Andrey Astrelin\r\n\r\nMC7D-KB v0.8\r\n(c)2025, Jessica Chen");
+            MessageBox.Show($"Original:\r\nMC7D v1.31\r\n(c)2010, Andrey Astrelin\r\n\r\nMC7D-KB {VERSION}\r\n(c)2025, Jessica Chen");
         }
 
         private void startExtraTurnsToolStripMenuItem_Click(object sender,EventArgs e) {
