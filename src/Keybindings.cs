@@ -384,18 +384,22 @@ namespace _3dedit
             }
             public Grip(Axis axis, int layerMask){
                 this.axis = axis;
-                this.layerMask = axis.inverted ? -layerMask : layerMask;
+                this.layerMask = layerMask;
             }
 
+            private int NormLayerMask()
+            {
+                return this.axis.inverted ? -this.layerMask : this.layerMask;
+            }
 
             public void OnKeyDown(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
-                Cube.Grip(axis.idx, layerMask);
+                Cube.Grip(axis.idx, this.NormLayerMask());
                 redraw = true;
             }
             public void OnKeyUp(ref Cube7D Cube, ref bool redraw, ref bool didTwist)
             {
-                int m0 = Cube.NormGripMask(layerMask);
+                int m0 = Cube.NormGripMask(this.NormLayerMask());
                 if (Cube.Gripped[0] == axis.idx && Cube.Gripped[1] == m0)
                 {
                     Cube.Grip(-1, 1);
