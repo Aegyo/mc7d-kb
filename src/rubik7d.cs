@@ -184,6 +184,9 @@ namespace _3dedit
 
             // UpdateTime complains about access from another thread if we try this before creating m_timer???
             LoadKeybinds("MC7D_keybinds.txt");
+            Keybinds.ActiveLayoutChanged += this.CheckKeybindSet;
+            Keybinds.KeybindLayoutsChanged += this.UpdateKeybindMenu;
+            this.UpdateKeybindMenu(null, EventArgs.Empty);
         }
 
 		/// <summary>
@@ -1793,7 +1796,6 @@ namespace _3dedit
         {
             if (redraw)
             {
-                CheckKeybindSet();
                 ProcessHighLights();
                 Redraw();
             }
@@ -1804,7 +1806,7 @@ namespace _3dedit
             }
         }
 
-        private void CheckKeybindSet()
+        private void CheckKeybindSet(object sender, EventArgs e)
         {
             string active = Keybinds.activeKeybindsName;
             activeKeybind.Text = $"Keybinds: {active}";
@@ -2540,7 +2542,11 @@ namespace _3dedit
             {
                 sr.Close();
             }
+        }
 
+        void UpdateKeybindMenu(object sender, EventArgs e)
+        {
+            activeKeybind.DropDownItems.Clear();
             foreach (var item in Keybinds.keybinds)
             {
                 ToolStripMenuItem menuItem = new ToolStripMenuItem();
@@ -2549,15 +2555,13 @@ namespace _3dedit
 
                 activeKeybind.DropDownItems.Add(menuItem);
             }
-
-            CheckKeybindSet();
+            this.CheckKeybindSet(sender, e);
         }
 
         void KeybindMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             Keybinds.switchKeybindSet(item.Text);
-            CheckKeybindSet();
         }
 
         void SetLight() {

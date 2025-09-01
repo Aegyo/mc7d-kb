@@ -13,6 +13,8 @@ namespace _3dedit
 
     public class Keybindings
     {
+        public event EventHandler KeybindLayoutsChanged;
+        public event EventHandler ActiveLayoutChanged;
 
         public Dictionary<string, KeybindSet> keybinds = new Dictionary<string, KeybindSet>();
         public KeybindSet activeKeybinds;
@@ -129,7 +131,7 @@ namespace _3dedit
             }
             keybinds.Add(p[0], kbs);
 
-            if (keybinds.Count == 1)
+            if (keybinds.Count == 1 || activeKeybindsName == p[0])
             {
                 switchKeybindSet(p[0]);
             }
@@ -141,9 +143,50 @@ namespace _3dedit
                 activeKeybinds = keybinds[name];
                 activeKeybindsName = name;
 
+                OnActiveLayoutChanged(EventArgs.Empty);
                 return true;
             }
             return false;
+        }
+
+        public bool CreateKeybindSet(string name)
+        {
+            if (name.Length < 0)
+            {
+                MessageBox.Show($"Layout name cannot be blank");
+                return false;
+            }
+
+            if (keybinds.ContainsKey(name))
+            {
+                MessageBox.Show($"Layout already exists with that name ({name})");
+                return false;
+            }
+
+            keybinds.Add(name, new KeybindSet());
+            OnKeybindLayoutsChanged(EventArgs.Empty);
+            return true;
+        }
+
+        public bool DeleteKeybindSet(string name)
+        {
+            if (keybinds.ContainsKey(name))
+            {
+                keybinds.Remove(name);
+                OnKeybindLayoutsChanged(EventArgs.Empty);
+            }
+
+            return true;
+        }
+
+        protected void OnKeybindLayoutsChanged(EventArgs e)
+        {
+            KeybindLayoutsChanged?.Invoke(this, e);
+        }
+
+        protected void OnActiveLayoutChanged(EventArgs e)
+        {
+            ActiveLayoutChanged?.Invoke(this, e);
         }
 
         public class Axis

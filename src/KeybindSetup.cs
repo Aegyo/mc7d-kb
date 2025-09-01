@@ -192,14 +192,10 @@ namespace _3dedit
             if (res.Equals(DialogResult.OK))
             {
                 string name = td.Value.Replace(' ', '_').Replace(',', '_');
-                if (name.Length > 0 && keybinds.keybinds.ContainsKey(name))
+                if (keybinds.CreateKeybindSet(name))
                 {
-                    MessageBox.Show($"Layout already exists with that name ({name})");
-                    return;
+                    CreateLayoutButton(name);
                 }
-
-                CreateLayoutButton(name);
-                keybinds.keybinds.Add(name, new Keybindings.KeybindSet());
             }
         }
 
@@ -216,7 +212,7 @@ namespace _3dedit
                                     MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                keybinds.keybinds.Remove(curKeybindsName);
+                keybinds.DeleteKeybindSet(curKeybindsName);
                 Control[] res = this.keybindSetsPanel.Controls.Find(curKeybindsName, false);
                 foreach (var item in res)
                 {
