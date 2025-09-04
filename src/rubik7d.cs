@@ -145,6 +145,7 @@ namespace _3dedit
         private ToolStripDropDownButton activeKeybind;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripMenuItem editKeybinds;
+        private ToolStripMenuItem mi_PuzzleSize2;
         private System.ComponentModel.IContainer components;
 
 		public Form1() {
@@ -311,6 +312,8 @@ namespace _3dedit
             this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.recalculateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.editKeybinds = new System.Windows.Forms.ToolStripMenuItem();
             this.puzzleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_Puzzle4D = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_Puzzle5D = new System.Windows.Forms.ToolStripMenuItem();
@@ -332,8 +335,7 @@ namespace _3dedit
             this.commutatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.editKeybinds = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi_PuzzleSize2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_trkFullUndoSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_trkTransparency)).BeginInit();
@@ -1327,14 +1329,14 @@ namespace _3dedit
             // 
             this.mi_Reset.Name = "mi_Reset";
             this.mi_Reset.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.mi_Reset.Size = new System.Drawing.Size(224, 26);
+            this.mi_Reset.Size = new System.Drawing.Size(205, 26);
             this.mi_Reset.Text = "Reset";
             this.mi_Reset.Click += new System.EventHandler(this.mi_Reset_Click);
             // 
             // mi_FullScramble
             // 
             this.mi_FullScramble.Name = "mi_FullScramble";
-            this.mi_FullScramble.Size = new System.Drawing.Size(224, 26);
+            this.mi_FullScramble.Size = new System.Drawing.Size(205, 26);
             this.mi_FullScramble.Text = "Full Scramble";
             this.mi_FullScramble.Click += new System.EventHandler(this.mi_FullScramble_Click);
             // 
@@ -1347,7 +1349,7 @@ namespace _3dedit
             this.mi_Scramble4,
             this.mi_Scramble5});
             this.mi_ScrambleNTurns.Name = "mi_ScrambleNTurns";
-            this.mi_ScrambleNTurns.Size = new System.Drawing.Size(224, 26);
+            this.mi_ScrambleNTurns.Size = new System.Drawing.Size(205, 26);
             this.mi_ScrambleNTurns.Text = "Scramble N turns";
             // 
             // mi_Scramble1
@@ -1388,13 +1390,13 @@ namespace _3dedit
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(202, 6);
             // 
             // mi_Undo
             // 
             this.mi_Undo.Name = "mi_Undo";
             this.mi_Undo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mi_Undo.Size = new System.Drawing.Size(224, 26);
+            this.mi_Undo.Size = new System.Drawing.Size(205, 26);
             this.mi_Undo.Text = "Undo";
             this.mi_Undo.Click += new System.EventHandler(this.mi_Undo_Click);
             // 
@@ -1402,21 +1404,21 @@ namespace _3dedit
             // 
             this.mi_Redo.Name = "mi_Redo";
             this.mi_Redo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mi_Redo.Size = new System.Drawing.Size(224, 26);
+            this.mi_Redo.Size = new System.Drawing.Size(205, 26);
             this.mi_Redo.Text = "Redo";
             this.mi_Redo.Click += new System.EventHandler(this.mi_Redo_Click);
             // 
             // mi_FullUndo
             // 
             this.mi_FullUndo.Name = "mi_FullUndo";
-            this.mi_FullUndo.Size = new System.Drawing.Size(224, 26);
+            this.mi_FullUndo.Size = new System.Drawing.Size(205, 26);
             this.mi_FullUndo.Text = "Full Undo";
             this.mi_FullUndo.Click += new System.EventHandler(this.mi_FullUndo_Click);
             // 
             // mi_FullRedo
             // 
             this.mi_FullRedo.Name = "mi_FullRedo";
-            this.mi_FullRedo.Size = new System.Drawing.Size(224, 26);
+            this.mi_FullRedo.Size = new System.Drawing.Size(205, 26);
             this.mi_FullRedo.Text = "Full Redo";
             this.mi_FullRedo.Click += new System.EventHandler(this.mi_FullRedo_Click);
             // 
@@ -1424,21 +1426,33 @@ namespace _3dedit
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 6);
             // 
             // recalculateToolStripMenuItem
             // 
             this.recalculateToolStripMenuItem.Name = "recalculateToolStripMenuItem";
-            this.recalculateToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.recalculateToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.recalculateToolStripMenuItem.Text = "Recalculate";
             this.recalculateToolStripMenuItem.Click += new System.EventHandler(this.recalculateToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(202, 6);
+            // 
+            // editKeybinds
+            // 
+            this.editKeybinds.Name = "editKeybinds";
+            this.editKeybinds.Size = new System.Drawing.Size(205, 26);
+            this.editKeybinds.Text = "Edit Keybinds";
+            this.editKeybinds.Click += new System.EventHandler(this.editKeybinds_Click);
             // 
             // puzzleToolStripMenuItem
             // 
@@ -1448,6 +1462,7 @@ namespace _3dedit
             this.mi_Puzzle6D,
             this.mi_Puzzle7D,
             this.toolStripMenuItem2,
+            this.mi_PuzzleSize2,
             this.mi_PuzzleSize3,
             this.mi_PuzzleSize4,
             this.mi_PuzzleSize5});
@@ -1458,21 +1473,21 @@ namespace _3dedit
             // mi_Puzzle4D
             // 
             this.mi_Puzzle4D.Name = "mi_Puzzle4D";
-            this.mi_Puzzle4D.Size = new System.Drawing.Size(131, 26);
+            this.mi_Puzzle4D.Size = new System.Drawing.Size(224, 26);
             this.mi_Puzzle4D.Text = "4D";
             this.mi_Puzzle4D.Click += new System.EventHandler(this.mi_Puzzle4D_Click);
             // 
             // mi_Puzzle5D
             // 
             this.mi_Puzzle5D.Name = "mi_Puzzle5D";
-            this.mi_Puzzle5D.Size = new System.Drawing.Size(131, 26);
+            this.mi_Puzzle5D.Size = new System.Drawing.Size(224, 26);
             this.mi_Puzzle5D.Text = "5D";
             this.mi_Puzzle5D.Click += new System.EventHandler(this.mi_Puzzle5D_Click);
             // 
             // mi_Puzzle6D
             // 
             this.mi_Puzzle6D.Name = "mi_Puzzle6D";
-            this.mi_Puzzle6D.Size = new System.Drawing.Size(131, 26);
+            this.mi_Puzzle6D.Size = new System.Drawing.Size(224, 26);
             this.mi_Puzzle6D.Text = "6D";
             this.mi_Puzzle6D.Click += new System.EventHandler(this.mi_Puzzle6D_Click);
             // 
@@ -1481,35 +1496,35 @@ namespace _3dedit
             this.mi_Puzzle7D.Checked = true;
             this.mi_Puzzle7D.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mi_Puzzle7D.Name = "mi_Puzzle7D";
-            this.mi_Puzzle7D.Size = new System.Drawing.Size(131, 26);
+            this.mi_Puzzle7D.Size = new System.Drawing.Size(224, 26);
             this.mi_Puzzle7D.Text = "7D";
             this.mi_Puzzle7D.Click += new System.EventHandler(this.mi_Puzzle7D_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(128, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
             // 
             // mi_PuzzleSize3
             // 
             this.mi_PuzzleSize3.Checked = true;
             this.mi_PuzzleSize3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mi_PuzzleSize3.Name = "mi_PuzzleSize3";
-            this.mi_PuzzleSize3.Size = new System.Drawing.Size(131, 26);
+            this.mi_PuzzleSize3.Size = new System.Drawing.Size(224, 26);
             this.mi_PuzzleSize3.Text = "Size 3";
             this.mi_PuzzleSize3.Click += new System.EventHandler(this.mi_PuzzleSize3_Click);
             // 
             // mi_PuzzleSize4
             // 
             this.mi_PuzzleSize4.Name = "mi_PuzzleSize4";
-            this.mi_PuzzleSize4.Size = new System.Drawing.Size(131, 26);
+            this.mi_PuzzleSize4.Size = new System.Drawing.Size(224, 26);
             this.mi_PuzzleSize4.Text = "Size 4";
             this.mi_PuzzleSize4.Click += new System.EventHandler(this.mi_PuzzleSize4_Click);
             // 
             // mi_PuzzleSize5
             // 
             this.mi_PuzzleSize5.Name = "mi_PuzzleSize5";
-            this.mi_PuzzleSize5.Size = new System.Drawing.Size(131, 26);
+            this.mi_PuzzleSize5.Size = new System.Drawing.Size(224, 26);
             this.mi_PuzzleSize5.Text = "Size 5";
             this.mi_PuzzleSize5.Click += new System.EventHandler(this.mi_PuzzleSize5_Click);
             // 
@@ -1610,17 +1625,12 @@ namespace _3dedit
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // toolStripSeparator2
+            // mi_PuzzleSize2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
-            // 
-            // editKeybinds
-            // 
-            this.editKeybinds.Name = "editKeybinds";
-            this.editKeybinds.Size = new System.Drawing.Size(224, 26);
-            this.editKeybinds.Text = "Edit Keybinds";
-            this.editKeybinds.Click += new System.EventHandler(this.editKeybinds_Click);
+            this.mi_PuzzleSize2.Name = "mi_PuzzleSize2";
+            this.mi_PuzzleSize2.Size = new System.Drawing.Size(224, 26);
+            this.mi_PuzzleSize2.Text = "Size 2";
+            this.mi_PuzzleSize2.Click += new System.EventHandler(this.mi_PuzzleSize2_Click);
             // 
             // Form1
             // 
@@ -1670,12 +1680,15 @@ namespace _3dedit
             mi_Puzzle7D.Checked=(n==7);
         }
         int GetSize() {
+            if(mi_PuzzleSize2.Checked) return 2;
             if(mi_PuzzleSize3.Checked) return 3;
             if(mi_PuzzleSize4.Checked) return 4;
             if(mi_PuzzleSize5.Checked) return 5;
             return 3;
         }
-        void SetSize(int n) {
+        void SetSize(int n)
+        {
+            mi_PuzzleSize2.Checked=(n==2);
             mi_PuzzleSize3.Checked=(n==3);
             mi_PuzzleSize4.Checked=(n==4);
             mi_PuzzleSize5.Checked=(n==5);
@@ -2145,6 +2158,11 @@ namespace _3dedit
             NewScene();
         }
 
+        private void mi_PuzzleSize2_Click(object sender, EventArgs e)
+        {
+            SetSize(2);
+            NewScene();
+        }
         private void mi_PuzzleSize3_Click(object sender,EventArgs e) {
             SetSize(3);
             NewScene();
