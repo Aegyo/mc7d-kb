@@ -165,10 +165,10 @@ namespace _3dedit
 
 
 			this.dxControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dxControl2.Location = new System.Drawing.Point(0, 0);
-			this.dxControl2.Name = "dxControl2";
-			this.dxControl2.Size = new System.Drawing.Size(793, 600);
-			this.dxControl2.TabIndex = 0;
+            this.dxControl2.Location = new System.Drawing.Point(0, 28);
+            this.dxControl2.Name = "dxControl2";
+            this.dxControl2.Size = new System.Drawing.Size(793, 544);
+            this.dxControl2.TabIndex = 0;
 			this.dxControl2.MouseUp += new MouseEventHandler(MouseUpEvt);
 			this.dxControl2.MouseDown += new MouseEventHandler(MouseDownEvt);
 			this.dxControl2.MouseMove += new MouseEventHandler(MouseEvt);
@@ -176,6 +176,7 @@ namespace _3dedit
             this.dxControl2.KeyUp += new KeyEventHandler(KeyUpEvt);
 
 			this.panel2.Controls.Add(this.dxControl2);
+            this.panel2.Controls.SetChildIndex(this.dxControl2, 0);
 
             NColMask=new bool[8];
             FaceMask=new int[15];
