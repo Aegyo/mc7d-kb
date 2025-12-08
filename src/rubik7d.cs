@@ -321,6 +321,7 @@ namespace _3dedit
             this.mi_Puzzle6D = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_Puzzle7D = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mi_PuzzleSize2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_PuzzleSize3 = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_PuzzleSize4 = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_PuzzleSize5 = new System.Windows.Forms.ToolStripMenuItem();
@@ -336,7 +337,6 @@ namespace _3dedit
             this.commutatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mi_PuzzleSize2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_trkFullUndoSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_trkTransparency)).BeginInit();
@@ -355,9 +355,9 @@ namespace _3dedit
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(729, 0);
+            this.splitter1.Location = new System.Drawing.Point(774, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(4, 684);
+            this.splitter1.Size = new System.Drawing.Size(3, 684);
             this.splitter1.TabIndex = 18;
             this.splitter1.TabStop = false;
             // 
@@ -427,9 +427,9 @@ namespace _3dedit
             this.panel1.Controls.Add(this.trk_faceSep);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panel1.Location = new System.Drawing.Point(733, 0);
+            this.panel1.Location = new System.Drawing.Point(777, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(264, 684);
+            this.panel1.Size = new System.Drawing.Size(220, 684);
             this.panel1.TabIndex = 19;
             // 
             // m_RunByClick
@@ -437,9 +437,9 @@ namespace _3dedit
             this.m_RunByClick.AutoSize = true;
             this.m_RunByClick.Checked = true;
             this.m_RunByClick.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.m_RunByClick.Location = new System.Drawing.Point(136, 730);
+            this.m_RunByClick.Location = new System.Drawing.Point(113, 633);
             this.m_RunByClick.Name = "m_RunByClick";
-            this.m_RunByClick.Size = new System.Drawing.Size(108, 21);
+            this.m_RunByClick.Size = new System.Drawing.Size(86, 17);
             this.m_RunByClick.TabIndex = 17;
             this.m_RunByClick.Text = "Run by Click";
             this.m_RunByClick.UseVisualStyleBackColor = true;
@@ -449,9 +449,9 @@ namespace _3dedit
             this.m_cbQuickMacro.AutoSize = true;
             this.m_cbQuickMacro.Checked = true;
             this.m_cbQuickMacro.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.m_cbQuickMacro.Location = new System.Drawing.Point(7, 730);
+            this.m_cbQuickMacro.Location = new System.Drawing.Point(6, 633);
             this.m_cbQuickMacro.Name = "m_cbQuickMacro";
-            this.m_cbQuickMacro.Size = new System.Drawing.Size(126, 21);
+            this.m_cbQuickMacro.Size = new System.Drawing.Size(98, 17);
             this.m_cbQuickMacro.TabIndex = 17;
             this.m_cbQuickMacro.Text = "Macros Autoref";
             this.m_cbQuickMacro.UseVisualStyleBackColor = true;
@@ -459,18 +459,18 @@ namespace _3dedit
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(114, 224);
+            this.label13.Location = new System.Drawing.Point(95, 194);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 17);
+            this.label13.Size = new System.Drawing.Size(72, 13);
             this.label13.TabIndex = 16;
             this.label13.Text = "Transparency";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(11, 291);
+            this.label12.Location = new System.Drawing.Point(9, 252);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(113, 17);
+            this.label12.Size = new System.Drawing.Size(86, 13);
             this.label12.TabIndex = 16;
             this.label12.Text = "Full Undo Speed";
             // 
@@ -478,37 +478,36 @@ namespace _3dedit
             // 
             this.m_tbRevStack.BackColor = System.Drawing.SystemColors.Control;
             this.m_tbRevStack.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.m_tbRevStack.Location = new System.Drawing.Point(80, 763);
+            this.m_tbRevStack.Location = new System.Drawing.Point(67, 661);
             this.m_tbRevStack.Name = "m_tbRevStack";
             this.m_tbRevStack.ReadOnly = true;
-            this.m_tbRevStack.Size = new System.Drawing.Size(166, 16);
+            this.m_tbRevStack.Size = new System.Drawing.Size(138, 13);
             this.m_tbRevStack.TabIndex = 15;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 763);
+            this.label11.Location = new System.Drawing.Point(6, 661);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(72, 17);
+            this.label11.Size = new System.Drawing.Size(58, 13);
             this.label11.TabIndex = 14;
             this.label11.Text = "RevStack:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 497);
+            this.label10.Location = new System.Drawing.Point(6, 431);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 17);
+            this.label10.Size = new System.Drawing.Size(45, 13);
             this.label10.TabIndex = 13;
             this.label10.Text = "Macros:";
             // 
             // m_lbMacros
             // 
             this.m_lbMacros.FormattingEnabled = true;
-            this.m_lbMacros.ItemHeight = 16;
-            this.m_lbMacros.Location = new System.Drawing.Point(7, 523);
+            this.m_lbMacros.Location = new System.Drawing.Point(6, 453);
             this.m_lbMacros.Name = "m_lbMacros";
-            this.m_lbMacros.Size = new System.Drawing.Size(132, 180);
+            this.m_lbMacros.Size = new System.Drawing.Size(110, 147);
             this.m_lbMacros.Sorted = true;
             this.m_lbMacros.TabIndex = 12;
             this.m_lbMacros.MouseClick += new System.Windows.Forms.MouseEventHandler(this.m_lbMacros_MouseClick);
@@ -517,9 +516,9 @@ namespace _3dedit
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(152, 497);
+            this.label9.Location = new System.Drawing.Point(127, 431);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 17);
+            this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 11;
             this.label9.Text = "Show cubies:";
             // 
@@ -529,9 +528,9 @@ namespace _3dedit
             this.cb_Show3C.Checked = true;
             this.cb_Show3C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show3C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show3C.Location = new System.Drawing.Point(186, 583);
+            this.cb_Show3C.Location = new System.Drawing.Point(155, 505);
             this.cb_Show3C.Name = "cb_Show3C";
-            this.cb_Show3C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show3C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show3C.TabIndex = 10;
             this.cb_Show3C.Text = "3C";
             this.cb_Show3C.UseVisualStyleBackColor = true;
@@ -543,9 +542,9 @@ namespace _3dedit
             this.cb_Show5C.Checked = true;
             this.cb_Show5C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show5C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show5C.Location = new System.Drawing.Point(186, 636);
+            this.cb_Show5C.Location = new System.Drawing.Point(155, 551);
             this.cb_Show5C.Name = "cb_Show5C";
-            this.cb_Show5C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show5C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show5C.TabIndex = 10;
             this.cb_Show5C.Text = "5C";
             this.cb_Show5C.UseVisualStyleBackColor = true;
@@ -557,9 +556,9 @@ namespace _3dedit
             this.cb_Show1C.Checked = true;
             this.cb_Show1C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show1C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show1C.Location = new System.Drawing.Point(186, 530);
+            this.cb_Show1C.Location = new System.Drawing.Point(155, 459);
             this.cb_Show1C.Name = "cb_Show1C";
-            this.cb_Show1C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show1C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show1C.TabIndex = 10;
             this.cb_Show1C.Text = "1C";
             this.cb_Show1C.UseVisualStyleBackColor = true;
@@ -571,9 +570,9 @@ namespace _3dedit
             this.cb_Show6C.Checked = true;
             this.cb_Show6C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show6C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show6C.Location = new System.Drawing.Point(186, 662);
+            this.cb_Show6C.Location = new System.Drawing.Point(155, 574);
             this.cb_Show6C.Name = "cb_Show6C";
-            this.cb_Show6C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show6C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show6C.TabIndex = 10;
             this.cb_Show6C.Text = "6C";
             this.cb_Show6C.UseVisualStyleBackColor = true;
@@ -585,9 +584,9 @@ namespace _3dedit
             this.cb_Show2C.Checked = true;
             this.cb_Show2C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show2C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show2C.Location = new System.Drawing.Point(186, 556);
+            this.cb_Show2C.Location = new System.Drawing.Point(155, 482);
             this.cb_Show2C.Name = "cb_Show2C";
-            this.cb_Show2C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show2C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show2C.TabIndex = 10;
             this.cb_Show2C.Text = "2C";
             this.cb_Show2C.UseVisualStyleBackColor = true;
@@ -599,9 +598,9 @@ namespace _3dedit
             this.cb_Show7C.Checked = true;
             this.cb_Show7C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show7C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show7C.Location = new System.Drawing.Point(186, 689);
+            this.cb_Show7C.Location = new System.Drawing.Point(155, 597);
             this.cb_Show7C.Name = "cb_Show7C";
-            this.cb_Show7C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show7C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show7C.TabIndex = 10;
             this.cb_Show7C.Text = "7C";
             this.cb_Show7C.UseVisualStyleBackColor = true;
@@ -613,9 +612,9 @@ namespace _3dedit
             this.cb_Show4C.Checked = true;
             this.cb_Show4C.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cb_Show4C.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cb_Show4C.Location = new System.Drawing.Point(186, 609);
+            this.cb_Show4C.Location = new System.Drawing.Point(155, 528);
             this.cb_Show4C.Name = "cb_Show4C";
-            this.cb_Show4C.Size = new System.Drawing.Size(47, 21);
+            this.cb_Show4C.Size = new System.Drawing.Size(39, 17);
             this.cb_Show4C.TabIndex = 10;
             this.cb_Show4C.Text = "4C";
             this.cb_Show4C.UseVisualStyleBackColor = true;
@@ -624,9 +623,9 @@ namespace _3dedit
             // cb_HighlightByColors
             // 
             this.cb_HighlightByColors.AutoSize = true;
-            this.cb_HighlightByColors.Location = new System.Drawing.Point(18, 458);
+            this.cb_HighlightByColors.Location = new System.Drawing.Point(15, 397);
             this.cb_HighlightByColors.Name = "cb_HighlightByColors";
-            this.cb_HighlightByColors.Size = new System.Drawing.Size(146, 21);
+            this.cb_HighlightByColors.Size = new System.Drawing.Size(112, 17);
             this.cb_HighlightByColors.TabIndex = 9;
             this.cb_HighlightByColors.Text = "Highlight by colors";
             this.cb_HighlightByColors.ThreeState = true;
@@ -637,27 +636,27 @@ namespace _3dedit
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(114, 197);
+            this.label8.Location = new System.Drawing.Point(95, 171);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(21, 17);
+            this.label8.Size = new System.Drawing.Size(17, 13);
             this.label8.TabIndex = 8;
             this.label8.Text = "S:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(114, 166);
+            this.label7.Location = new System.Drawing.Point(95, 144);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(22, 17);
+            this.label7.Size = new System.Drawing.Size(18, 13);
             this.label7.TabIndex = 8;
             this.label7.Text = "D:";
             // 
             // m_trkFullUndoSpeed
             // 
-            this.m_trkFullUndoSpeed.Location = new System.Drawing.Point(116, 283);
+            this.m_trkFullUndoSpeed.Location = new System.Drawing.Point(97, 245);
             this.m_trkFullUndoSpeed.Maximum = 100;
             this.m_trkFullUndoSpeed.Name = "m_trkFullUndoSpeed";
-            this.m_trkFullUndoSpeed.Size = new System.Drawing.Size(125, 56);
+            this.m_trkFullUndoSpeed.Size = new System.Drawing.Size(104, 45);
             this.m_trkFullUndoSpeed.TabIndex = 7;
             this.m_trkFullUndoSpeed.TickStyle = System.Windows.Forms.TickStyle.None;
             this.m_trkFullUndoSpeed.Value = 15;
@@ -665,10 +664,10 @@ namespace _3dedit
             // 
             // m_trkTransparency
             // 
-            this.m_trkTransparency.Location = new System.Drawing.Point(118, 242);
+            this.m_trkTransparency.Location = new System.Drawing.Point(98, 210);
             this.m_trkTransparency.Maximum = 255;
             this.m_trkTransparency.Name = "m_trkTransparency";
-            this.m_trkTransparency.Size = new System.Drawing.Size(124, 56);
+            this.m_trkTransparency.Size = new System.Drawing.Size(104, 45);
             this.m_trkTransparency.TabIndex = 7;
             this.m_trkTransparency.TickStyle = System.Windows.Forms.TickStyle.None;
             this.m_trkTransparency.Value = 15;
@@ -676,20 +675,20 @@ namespace _3dedit
             // 
             // trk_LightSpec
             // 
-            this.trk_LightSpec.Location = new System.Drawing.Point(136, 194);
+            this.trk_LightSpec.Location = new System.Drawing.Point(113, 168);
             this.trk_LightSpec.Maximum = 255;
             this.trk_LightSpec.Name = "trk_LightSpec";
-            this.trk_LightSpec.Size = new System.Drawing.Size(105, 56);
+            this.trk_LightSpec.Size = new System.Drawing.Size(88, 45);
             this.trk_LightSpec.TabIndex = 7;
             this.trk_LightSpec.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trk_LightSpec.ValueChanged += new System.EventHandler(this.trk_LightSpec_ValueChanged);
             // 
             // trk_LightDiff
             // 
-            this.trk_LightDiff.Location = new System.Drawing.Point(136, 163);
+            this.trk_LightDiff.Location = new System.Drawing.Point(113, 141);
             this.trk_LightDiff.Maximum = 255;
             this.trk_LightDiff.Name = "trk_LightDiff";
-            this.trk_LightDiff.Size = new System.Drawing.Size(105, 56);
+            this.trk_LightDiff.Size = new System.Drawing.Size(88, 45);
             this.trk_LightDiff.TabIndex = 7;
             this.trk_LightDiff.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trk_LightDiff.ValueChanged += new System.EventHandler(this.trk_LightDiff_ValueChanged);
@@ -697,9 +696,9 @@ namespace _3dedit
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(114, 144);
+            this.label6.Location = new System.Drawing.Point(95, 125);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 17);
+            this.label6.Size = new System.Drawing.Size(33, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Light:";
             // 
@@ -708,9 +707,9 @@ namespace _3dedit
             this.cb_Col14.AutoSize = true;
             this.cb_Col14.Checked = true;
             this.cb_Col14.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col14.Location = new System.Drawing.Point(223, 435);
+            this.cb_Col14.Location = new System.Drawing.Point(186, 377);
             this.cb_Col14.Name = "cb_Col14";
-            this.cb_Col14.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col14.Size = new System.Drawing.Size(15, 14);
             this.cb_Col14.TabIndex = 5;
             this.cb_Col14.ThreeState = true;
             this.cb_Col14.UseVisualStyleBackColor = true;
@@ -721,9 +720,9 @@ namespace _3dedit
             this.cb_Col13.AutoSize = true;
             this.cb_Col13.Checked = true;
             this.cb_Col13.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col13.Location = new System.Drawing.Point(193, 435);
+            this.cb_Col13.Location = new System.Drawing.Point(161, 377);
             this.cb_Col13.Name = "cb_Col13";
-            this.cb_Col13.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col13.Size = new System.Drawing.Size(15, 14);
             this.cb_Col13.TabIndex = 5;
             this.cb_Col13.ThreeState = true;
             this.cb_Col13.UseVisualStyleBackColor = true;
@@ -734,9 +733,9 @@ namespace _3dedit
             this.cb_Col7.AutoSize = true;
             this.cb_Col7.Checked = true;
             this.cb_Col7.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col7.Location = new System.Drawing.Point(223, 377);
+            this.cb_Col7.Location = new System.Drawing.Point(186, 327);
             this.cb_Col7.Name = "cb_Col7";
-            this.cb_Col7.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col7.Size = new System.Drawing.Size(15, 14);
             this.cb_Col7.TabIndex = 5;
             this.cb_Col7.ThreeState = true;
             this.cb_Col7.UseVisualStyleBackColor = true;
@@ -747,9 +746,9 @@ namespace _3dedit
             this.cb_Col12.AutoSize = true;
             this.cb_Col12.Checked = true;
             this.cb_Col12.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col12.Location = new System.Drawing.Point(163, 435);
+            this.cb_Col12.Location = new System.Drawing.Point(136, 377);
             this.cb_Col12.Name = "cb_Col12";
-            this.cb_Col12.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col12.Size = new System.Drawing.Size(15, 14);
             this.cb_Col12.TabIndex = 5;
             this.cb_Col12.ThreeState = true;
             this.cb_Col12.UseVisualStyleBackColor = true;
@@ -760,9 +759,9 @@ namespace _3dedit
             this.cb_Col6.AutoSize = true;
             this.cb_Col6.Checked = true;
             this.cb_Col6.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col6.Location = new System.Drawing.Point(193, 377);
+            this.cb_Col6.Location = new System.Drawing.Point(161, 327);
             this.cb_Col6.Name = "cb_Col6";
-            this.cb_Col6.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col6.Size = new System.Drawing.Size(15, 14);
             this.cb_Col6.TabIndex = 5;
             this.cb_Col6.ThreeState = true;
             this.cb_Col6.UseVisualStyleBackColor = true;
@@ -773,9 +772,9 @@ namespace _3dedit
             this.cb_Col11.AutoSize = true;
             this.cb_Col11.Checked = true;
             this.cb_Col11.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col11.Location = new System.Drawing.Point(133, 435);
+            this.cb_Col11.Location = new System.Drawing.Point(111, 377);
             this.cb_Col11.Name = "cb_Col11";
-            this.cb_Col11.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col11.Size = new System.Drawing.Size(15, 14);
             this.cb_Col11.TabIndex = 5;
             this.cb_Col11.ThreeState = true;
             this.cb_Col11.UseVisualStyleBackColor = true;
@@ -786,9 +785,9 @@ namespace _3dedit
             this.cb_Col5.AutoSize = true;
             this.cb_Col5.Checked = true;
             this.cb_Col5.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col5.Location = new System.Drawing.Point(163, 377);
+            this.cb_Col5.Location = new System.Drawing.Point(136, 327);
             this.cb_Col5.Name = "cb_Col5";
-            this.cb_Col5.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col5.Size = new System.Drawing.Size(15, 14);
             this.cb_Col5.TabIndex = 5;
             this.cb_Col5.ThreeState = true;
             this.cb_Col5.UseVisualStyleBackColor = true;
@@ -799,9 +798,9 @@ namespace _3dedit
             this.cb_Col10.AutoSize = true;
             this.cb_Col10.Checked = true;
             this.cb_Col10.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col10.Location = new System.Drawing.Point(103, 435);
+            this.cb_Col10.Location = new System.Drawing.Point(86, 377);
             this.cb_Col10.Name = "cb_Col10";
-            this.cb_Col10.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col10.Size = new System.Drawing.Size(15, 14);
             this.cb_Col10.TabIndex = 5;
             this.cb_Col10.ThreeState = true;
             this.cb_Col10.UseVisualStyleBackColor = true;
@@ -812,9 +811,9 @@ namespace _3dedit
             this.cb_Col4.AutoSize = true;
             this.cb_Col4.Checked = true;
             this.cb_Col4.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col4.Location = new System.Drawing.Point(133, 377);
+            this.cb_Col4.Location = new System.Drawing.Point(111, 327);
             this.cb_Col4.Name = "cb_Col4";
-            this.cb_Col4.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col4.Size = new System.Drawing.Size(15, 14);
             this.cb_Col4.TabIndex = 5;
             this.cb_Col4.ThreeState = true;
             this.cb_Col4.UseVisualStyleBackColor = true;
@@ -825,9 +824,9 @@ namespace _3dedit
             this.cb_Col9.AutoSize = true;
             this.cb_Col9.Checked = true;
             this.cb_Col9.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col9.Location = new System.Drawing.Point(73, 435);
+            this.cb_Col9.Location = new System.Drawing.Point(61, 377);
             this.cb_Col9.Name = "cb_Col9";
-            this.cb_Col9.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col9.Size = new System.Drawing.Size(15, 14);
             this.cb_Col9.TabIndex = 5;
             this.cb_Col9.ThreeState = true;
             this.cb_Col9.UseVisualStyleBackColor = true;
@@ -838,9 +837,9 @@ namespace _3dedit
             this.cb_Col3.AutoSize = true;
             this.cb_Col3.Checked = true;
             this.cb_Col3.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col3.Location = new System.Drawing.Point(103, 377);
+            this.cb_Col3.Location = new System.Drawing.Point(86, 327);
             this.cb_Col3.Name = "cb_Col3";
-            this.cb_Col3.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col3.Size = new System.Drawing.Size(15, 14);
             this.cb_Col3.TabIndex = 5;
             this.cb_Col3.ThreeState = true;
             this.cb_Col3.UseVisualStyleBackColor = true;
@@ -851,9 +850,9 @@ namespace _3dedit
             this.cb_Col8.AutoSize = true;
             this.cb_Col8.Checked = true;
             this.cb_Col8.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col8.Location = new System.Drawing.Point(43, 435);
+            this.cb_Col8.Location = new System.Drawing.Point(36, 377);
             this.cb_Col8.Name = "cb_Col8";
-            this.cb_Col8.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col8.Size = new System.Drawing.Size(15, 14);
             this.cb_Col8.TabIndex = 5;
             this.cb_Col8.ThreeState = true;
             this.cb_Col8.UseVisualStyleBackColor = true;
@@ -864,9 +863,9 @@ namespace _3dedit
             this.cb_Col2.AutoSize = true;
             this.cb_Col2.Checked = true;
             this.cb_Col2.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col2.Location = new System.Drawing.Point(73, 377);
+            this.cb_Col2.Location = new System.Drawing.Point(61, 327);
             this.cb_Col2.Name = "cb_Col2";
-            this.cb_Col2.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col2.Size = new System.Drawing.Size(15, 14);
             this.cb_Col2.TabIndex = 5;
             this.cb_Col2.ThreeState = true;
             this.cb_Col2.UseVisualStyleBackColor = true;
@@ -877,9 +876,9 @@ namespace _3dedit
             this.cb_Col1.AutoSize = true;
             this.cb_Col1.Checked = true;
             this.cb_Col1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.cb_Col1.Location = new System.Drawing.Point(43, 377);
+            this.cb_Col1.Location = new System.Drawing.Point(36, 327);
             this.cb_Col1.Name = "cb_Col1";
-            this.cb_Col1.Size = new System.Drawing.Size(18, 17);
+            this.cb_Col1.Size = new System.Drawing.Size(15, 14);
             this.cb_Col1.TabIndex = 5;
             this.cb_Col1.ThreeState = true;
             this.cb_Col1.UseVisualStyleBackColor = true;
@@ -888,9 +887,9 @@ namespace _3dedit
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 320);
+            this.label4.Location = new System.Drawing.Point(12, 277);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 17);
+            this.label4.Size = new System.Drawing.Size(39, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Colors:";
             // 
@@ -898,9 +897,9 @@ namespace _3dedit
             // 
             this.m_bCol14.BackColor = System.Drawing.Color.Red;
             this.m_bCol14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol14.Location = new System.Drawing.Point(215, 400);
+            this.m_bCol14.Location = new System.Drawing.Point(179, 347);
             this.m_bCol14.Name = "m_bCol14";
-            this.m_bCol14.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol14.Size = new System.Drawing.Size(24, 24);
             this.m_bCol14.TabIndex = 3;
             this.m_bCol14.UseVisualStyleBackColor = false;
             this.m_bCol14.Click += new System.EventHandler(this.m_bCol14_Click);
@@ -909,9 +908,9 @@ namespace _3dedit
             // 
             this.m_bCol13.BackColor = System.Drawing.Color.Red;
             this.m_bCol13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol13.Location = new System.Drawing.Point(185, 400);
+            this.m_bCol13.Location = new System.Drawing.Point(154, 347);
             this.m_bCol13.Name = "m_bCol13";
-            this.m_bCol13.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol13.Size = new System.Drawing.Size(24, 24);
             this.m_bCol13.TabIndex = 3;
             this.m_bCol13.UseVisualStyleBackColor = false;
             this.m_bCol13.Click += new System.EventHandler(this.m_bCol13_Click);
@@ -920,9 +919,9 @@ namespace _3dedit
             // 
             this.m_bCol7.BackColor = System.Drawing.Color.Red;
             this.m_bCol7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol7.Location = new System.Drawing.Point(215, 343);
+            this.m_bCol7.Location = new System.Drawing.Point(179, 297);
             this.m_bCol7.Name = "m_bCol7";
-            this.m_bCol7.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol7.Size = new System.Drawing.Size(24, 24);
             this.m_bCol7.TabIndex = 3;
             this.m_bCol7.UseVisualStyleBackColor = false;
             this.m_bCol7.Click += new System.EventHandler(this.m_bCol7_Click);
@@ -931,9 +930,9 @@ namespace _3dedit
             // 
             this.m_bCol12.BackColor = System.Drawing.Color.Red;
             this.m_bCol12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol12.Location = new System.Drawing.Point(155, 400);
+            this.m_bCol12.Location = new System.Drawing.Point(129, 347);
             this.m_bCol12.Name = "m_bCol12";
-            this.m_bCol12.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol12.Size = new System.Drawing.Size(24, 24);
             this.m_bCol12.TabIndex = 3;
             this.m_bCol12.UseVisualStyleBackColor = false;
             this.m_bCol12.Click += new System.EventHandler(this.m_bCol12_Click);
@@ -942,9 +941,9 @@ namespace _3dedit
             // 
             this.m_bCol6.BackColor = System.Drawing.Color.Red;
             this.m_bCol6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol6.Location = new System.Drawing.Point(185, 343);
+            this.m_bCol6.Location = new System.Drawing.Point(154, 297);
             this.m_bCol6.Name = "m_bCol6";
-            this.m_bCol6.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol6.Size = new System.Drawing.Size(24, 24);
             this.m_bCol6.TabIndex = 3;
             this.m_bCol6.UseVisualStyleBackColor = false;
             this.m_bCol6.Click += new System.EventHandler(this.m_bCol6_Click);
@@ -953,9 +952,9 @@ namespace _3dedit
             // 
             this.m_bCol11.BackColor = System.Drawing.Color.Red;
             this.m_bCol11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol11.Location = new System.Drawing.Point(125, 400);
+            this.m_bCol11.Location = new System.Drawing.Point(104, 347);
             this.m_bCol11.Name = "m_bCol11";
-            this.m_bCol11.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol11.Size = new System.Drawing.Size(24, 24);
             this.m_bCol11.TabIndex = 3;
             this.m_bCol11.UseVisualStyleBackColor = false;
             this.m_bCol11.Click += new System.EventHandler(this.m_bCol11_Click);
@@ -964,9 +963,9 @@ namespace _3dedit
             // 
             this.m_bCol5.BackColor = System.Drawing.Color.Red;
             this.m_bCol5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol5.Location = new System.Drawing.Point(155, 343);
+            this.m_bCol5.Location = new System.Drawing.Point(129, 297);
             this.m_bCol5.Name = "m_bCol5";
-            this.m_bCol5.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol5.Size = new System.Drawing.Size(24, 24);
             this.m_bCol5.TabIndex = 3;
             this.m_bCol5.UseVisualStyleBackColor = false;
             this.m_bCol5.Click += new System.EventHandler(this.m_bCol5_Click);
@@ -975,9 +974,9 @@ namespace _3dedit
             // 
             this.m_bCol10.BackColor = System.Drawing.Color.Red;
             this.m_bCol10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol10.Location = new System.Drawing.Point(95, 400);
+            this.m_bCol10.Location = new System.Drawing.Point(79, 347);
             this.m_bCol10.Name = "m_bCol10";
-            this.m_bCol10.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol10.Size = new System.Drawing.Size(24, 24);
             this.m_bCol10.TabIndex = 3;
             this.m_bCol10.UseVisualStyleBackColor = false;
             this.m_bCol10.Click += new System.EventHandler(this.m_bCol10_Click);
@@ -986,9 +985,9 @@ namespace _3dedit
             // 
             this.m_bCol4.BackColor = System.Drawing.Color.Red;
             this.m_bCol4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol4.Location = new System.Drawing.Point(125, 343);
+            this.m_bCol4.Location = new System.Drawing.Point(104, 297);
             this.m_bCol4.Name = "m_bCol4";
-            this.m_bCol4.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol4.Size = new System.Drawing.Size(24, 24);
             this.m_bCol4.TabIndex = 3;
             this.m_bCol4.UseVisualStyleBackColor = false;
             this.m_bCol4.Click += new System.EventHandler(this.m_bCol4_Click);
@@ -997,9 +996,9 @@ namespace _3dedit
             // 
             this.m_bCol9.BackColor = System.Drawing.Color.Red;
             this.m_bCol9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol9.Location = new System.Drawing.Point(65, 400);
+            this.m_bCol9.Location = new System.Drawing.Point(54, 347);
             this.m_bCol9.Name = "m_bCol9";
-            this.m_bCol9.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol9.Size = new System.Drawing.Size(24, 24);
             this.m_bCol9.TabIndex = 3;
             this.m_bCol9.UseVisualStyleBackColor = false;
             this.m_bCol9.Click += new System.EventHandler(this.m_bCol9_Click);
@@ -1008,9 +1007,9 @@ namespace _3dedit
             // 
             this.m_bCol3.BackColor = System.Drawing.Color.Red;
             this.m_bCol3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol3.Location = new System.Drawing.Point(95, 343);
+            this.m_bCol3.Location = new System.Drawing.Point(79, 297);
             this.m_bCol3.Name = "m_bCol3";
-            this.m_bCol3.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol3.Size = new System.Drawing.Size(24, 24);
             this.m_bCol3.TabIndex = 3;
             this.m_bCol3.UseVisualStyleBackColor = false;
             this.m_bCol3.Click += new System.EventHandler(this.m_bCol3_Click);
@@ -1019,9 +1018,9 @@ namespace _3dedit
             // 
             this.m_bCol8.BackColor = System.Drawing.Color.Red;
             this.m_bCol8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol8.Location = new System.Drawing.Point(35, 400);
+            this.m_bCol8.Location = new System.Drawing.Point(29, 347);
             this.m_bCol8.Name = "m_bCol8";
-            this.m_bCol8.Size = new System.Drawing.Size(29, 28);
+            this.m_bCol8.Size = new System.Drawing.Size(24, 24);
             this.m_bCol8.TabIndex = 3;
             this.m_bCol8.UseVisualStyleBackColor = false;
             this.m_bCol8.Click += new System.EventHandler(this.m_bCol8_Click);
@@ -1030,9 +1029,9 @@ namespace _3dedit
             // 
             this.m_bCol2.BackColor = System.Drawing.Color.Red;
             this.m_bCol2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol2.Location = new System.Drawing.Point(65, 343);
+            this.m_bCol2.Location = new System.Drawing.Point(54, 297);
             this.m_bCol2.Name = "m_bCol2";
-            this.m_bCol2.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol2.Size = new System.Drawing.Size(24, 24);
             this.m_bCol2.TabIndex = 3;
             this.m_bCol2.UseVisualStyleBackColor = false;
             this.m_bCol2.Click += new System.EventHandler(this.m_bCol2_Click);
@@ -1041,9 +1040,9 @@ namespace _3dedit
             // 
             this.m_bCol1.BackColor = System.Drawing.Color.Red;
             this.m_bCol1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.m_bCol1.Location = new System.Drawing.Point(35, 343);
+            this.m_bCol1.Location = new System.Drawing.Point(29, 297);
             this.m_bCol1.Name = "m_bCol1";
-            this.m_bCol1.Size = new System.Drawing.Size(29, 27);
+            this.m_bCol1.Size = new System.Drawing.Size(24, 24);
             this.m_bCol1.TabIndex = 3;
             this.m_bCol1.UseVisualStyleBackColor = false;
             this.m_bCol1.Click += new System.EventHandler(this.m_bCol1_Click);
@@ -1053,9 +1052,9 @@ namespace _3dedit
             this.groupBox1.Controls.Add(this.m_rbClick3);
             this.groupBox1.Controls.Add(this.m_rbClick2Inv);
             this.groupBox1.Controls.Add(this.m_rbClick2);
-            this.groupBox1.Location = new System.Drawing.Point(11, 144);
+            this.groupBox1.Location = new System.Drawing.Point(9, 125);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(95, 102);
+            this.groupBox1.Size = new System.Drawing.Size(79, 88);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Click Mode";
@@ -1063,9 +1062,9 @@ namespace _3dedit
             // m_rbClick3
             // 
             this.m_rbClick3.AutoSize = true;
-            this.m_rbClick3.Location = new System.Drawing.Point(8, 75);
+            this.m_rbClick3.Location = new System.Drawing.Point(7, 65);
             this.m_rbClick3.Name = "m_rbClick3";
-            this.m_rbClick3.Size = new System.Drawing.Size(77, 21);
+            this.m_rbClick3.Size = new System.Drawing.Size(62, 17);
             this.m_rbClick3.TabIndex = 0;
             this.m_rbClick3.Text = "3 Clicks";
             this.m_rbClick3.UseVisualStyleBackColor = true;
@@ -1074,9 +1073,9 @@ namespace _3dedit
             // m_rbClick2Inv
             // 
             this.m_rbClick2Inv.AutoSize = true;
-            this.m_rbClick2Inv.Location = new System.Drawing.Point(8, 48);
+            this.m_rbClick2Inv.Location = new System.Drawing.Point(7, 42);
             this.m_rbClick2Inv.Name = "m_rbClick2Inv";
-            this.m_rbClick2Inv.Size = new System.Drawing.Size(101, 21);
+            this.m_rbClick2Inv.Size = new System.Drawing.Size(78, 17);
             this.m_rbClick2Inv.TabIndex = 0;
             this.m_rbClick2Inv.Text = "2 Clk (Opp)";
             this.m_rbClick2Inv.UseVisualStyleBackColor = true;
@@ -1086,9 +1085,9 @@ namespace _3dedit
             // 
             this.m_rbClick2.AutoSize = true;
             this.m_rbClick2.Checked = true;
-            this.m_rbClick2.Location = new System.Drawing.Point(8, 22);
+            this.m_rbClick2.Location = new System.Drawing.Point(7, 19);
             this.m_rbClick2.Name = "m_rbClick2";
-            this.m_rbClick2.Size = new System.Drawing.Size(77, 21);
+            this.m_rbClick2.Size = new System.Drawing.Size(62, 17);
             this.m_rbClick2.TabIndex = 0;
             this.m_rbClick2.TabStop = true;
             this.m_rbClick2.Text = "2 Clicks";
@@ -1098,18 +1097,18 @@ namespace _3dedit
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 103);
+            this.label5.Location = new System.Drawing.Point(6, 89);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
+            this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 1;
             this.label5.Text = "Perspective";
             // 
             // trk_Perspective
             // 
-            this.trk_Perspective.Location = new System.Drawing.Point(116, 103);
+            this.trk_Perspective.Location = new System.Drawing.Point(97, 89);
             this.trk_Perspective.Maximum = 50;
             this.trk_Perspective.Name = "trk_Perspective";
-            this.trk_Perspective.Size = new System.Drawing.Size(125, 56);
+            this.trk_Perspective.Size = new System.Drawing.Size(104, 45);
             this.trk_Perspective.TabIndex = 0;
             this.trk_Perspective.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trk_Perspective.ValueChanged += new System.EventHandler(this.trk_faceSep_ValueChanged);
@@ -1117,19 +1116,19 @@ namespace _3dedit
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 76);
+            this.label3.Location = new System.Drawing.Point(6, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 17);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Sticker Size";
             // 
             // trk_StickerSize
             // 
-            this.trk_StickerSize.Location = new System.Drawing.Point(116, 76);
+            this.trk_StickerSize.Location = new System.Drawing.Point(97, 66);
             this.trk_StickerSize.Maximum = 50;
             this.trk_StickerSize.Minimum = 1;
             this.trk_StickerSize.Name = "trk_StickerSize";
-            this.trk_StickerSize.Size = new System.Drawing.Size(125, 56);
+            this.trk_StickerSize.Size = new System.Drawing.Size(104, 45);
             this.trk_StickerSize.TabIndex = 0;
             this.trk_StickerSize.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trk_StickerSize.Value = 1;
@@ -1138,19 +1137,19 @@ namespace _3dedit
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 50);
+            this.label2.Location = new System.Drawing.Point(6, 43);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 17);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Block Size";
             // 
             // trk_BlockSize
             // 
-            this.trk_BlockSize.Location = new System.Drawing.Point(116, 50);
+            this.trk_BlockSize.Location = new System.Drawing.Point(97, 43);
             this.trk_BlockSize.Maximum = 50;
             this.trk_BlockSize.Minimum = 1;
             this.trk_BlockSize.Name = "trk_BlockSize";
-            this.trk_BlockSize.Size = new System.Drawing.Size(125, 56);
+            this.trk_BlockSize.Size = new System.Drawing.Size(104, 45);
             this.trk_BlockSize.TabIndex = 0;
             this.trk_BlockSize.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trk_BlockSize.Value = 1;
@@ -1159,18 +1158,18 @@ namespace _3dedit
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 23);
+            this.label1.Location = new System.Drawing.Point(6, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 17);
+            this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Face Separation";
             // 
             // trk_faceSep
             // 
-            this.trk_faceSep.Location = new System.Drawing.Point(116, 23);
+            this.trk_faceSep.Location = new System.Drawing.Point(97, 20);
             this.trk_faceSep.Maximum = 50;
             this.trk_faceSep.Name = "trk_faceSep";
-            this.trk_faceSep.Size = new System.Drawing.Size(125, 56);
+            this.trk_faceSep.Size = new System.Drawing.Size(104, 45);
             this.trk_faceSep.TabIndex = 0;
             this.trk_faceSep.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trk_faceSep.ValueChanged += new System.EventHandler(this.trk_faceSep_ValueChanged);
@@ -1184,7 +1183,7 @@ namespace _3dedit
             this.panel2.Controls.Add(this.menuStrip1);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(729, 684);
+            this.panel2.Size = new System.Drawing.Size(774, 684);
             this.panel2.TabIndex = 20;
             // 
             // statusStrip1
@@ -1197,41 +1196,41 @@ namespace _3dedit
             this.ms_MacroStatus,
             this.m_lblCTime,
             this.activeKeybind});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 656);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 661);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(729, 28);
+            this.statusStrip1.Size = new System.Drawing.Size(774, 23);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(91, 22);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(74, 18);
             this.toolStripStatusLabel1.Text = "Click Status: ";
             // 
             // pb_ClickStatus
             // 
             this.pb_ClickStatus.Name = "pb_ClickStatus";
-            this.pb_ClickStatus.Size = new System.Drawing.Size(120, 20);
+            this.pb_ClickStatus.Size = new System.Drawing.Size(100, 17);
             this.pb_ClickStatus.Step = 25;
             this.pb_ClickStatus.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // ms_Twists
             // 
             this.ms_Twists.Name = "ms_Twists";
-            this.ms_Twists.Size = new System.Drawing.Size(79, 22);
+            this.ms_Twists.Size = new System.Drawing.Size(63, 18);
             this.ms_Twists.Text = "  Twists: 0  ";
             // 
             // ms_MacroStatus
             // 
             this.ms_MacroStatus.Name = "ms_MacroStatus";
-            this.ms_MacroStatus.Size = new System.Drawing.Size(50, 22);
+            this.ms_MacroStatus.Size = new System.Drawing.Size(39, 18);
             this.ms_MacroStatus.Text = "Ready";
             // 
             // m_lblCTime
             // 
             this.m_lblCTime.Name = "m_lblCTime";
-            this.m_lblCTime.Size = new System.Drawing.Size(115, 22);
+            this.m_lblCTime.Size = new System.Drawing.Size(91, 18);
             this.m_lblCTime.Text = "   Time: 00:00:00";
             // 
             // activeKeybind
@@ -1239,7 +1238,7 @@ namespace _3dedit
             this.activeKeybind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.activeKeybind.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.activeKeybind.Name = "activeKeybind";
-            this.activeKeybind.Size = new System.Drawing.Size(90, 26);
+            this.activeKeybind.Size = new System.Drawing.Size(74, 21);
             this.activeKeybind.Text = "Keybinds: ";
             this.activeKeybind.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -1254,7 +1253,7 @@ namespace _3dedit
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(729, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(774, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1267,14 +1266,14 @@ namespace _3dedit
             this.toolStripMenuItem1,
             this.mi_Exit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // mi_Open
             // 
             this.mi_Open.Name = "mi_Open";
             this.mi_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.mi_Open.Size = new System.Drawing.Size(181, 26);
+            this.mi_Open.Size = new System.Drawing.Size(146, 22);
             this.mi_Open.Text = "Open";
             this.mi_Open.Click += new System.EventHandler(this.mi_Open_Click);
             // 
@@ -1282,27 +1281,27 @@ namespace _3dedit
             // 
             this.mi_Save.Name = "mi_Save";
             this.mi_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.mi_Save.Size = new System.Drawing.Size(181, 26);
+            this.mi_Save.Size = new System.Drawing.Size(146, 22);
             this.mi_Save.Text = "Save";
             this.mi_Save.Click += new System.EventHandler(this.mi_Save_Click);
             // 
             // mi_SaveAs
             // 
             this.mi_SaveAs.Name = "mi_SaveAs";
-            this.mi_SaveAs.Size = new System.Drawing.Size(181, 26);
+            this.mi_SaveAs.Size = new System.Drawing.Size(146, 22);
             this.mi_SaveAs.Text = "Save As...";
             this.mi_SaveAs.Click += new System.EventHandler(this.mi_SaveAs_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 6);
             // 
             // mi_Exit
             // 
             this.mi_Exit.Name = "mi_Exit";
             this.mi_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.mi_Exit.Size = new System.Drawing.Size(181, 26);
+            this.mi_Exit.Size = new System.Drawing.Size(146, 22);
             this.mi_Exit.Text = "Exit";
             this.mi_Exit.Click += new System.EventHandler(this.mi_Exit_Click);
             // 
@@ -1323,21 +1322,21 @@ namespace _3dedit
             this.toolStripSeparator2,
             this.editKeybinds});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // mi_Reset
             // 
             this.mi_Reset.Name = "mi_Reset";
             this.mi_Reset.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.mi_Reset.Size = new System.Drawing.Size(205, 26);
+            this.mi_Reset.Size = new System.Drawing.Size(165, 22);
             this.mi_Reset.Text = "Reset";
             this.mi_Reset.Click += new System.EventHandler(this.mi_Reset_Click);
             // 
             // mi_FullScramble
             // 
             this.mi_FullScramble.Name = "mi_FullScramble";
-            this.mi_FullScramble.Size = new System.Drawing.Size(205, 26);
+            this.mi_FullScramble.Size = new System.Drawing.Size(165, 22);
             this.mi_FullScramble.Text = "Full Scramble";
             this.mi_FullScramble.Click += new System.EventHandler(this.mi_FullScramble_Click);
             // 
@@ -1350,54 +1349,54 @@ namespace _3dedit
             this.mi_Scramble4,
             this.mi_Scramble5});
             this.mi_ScrambleNTurns.Name = "mi_ScrambleNTurns";
-            this.mi_ScrambleNTurns.Size = new System.Drawing.Size(205, 26);
+            this.mi_ScrambleNTurns.Size = new System.Drawing.Size(165, 22);
             this.mi_ScrambleNTurns.Text = "Scramble N turns";
             // 
             // mi_Scramble1
             // 
             this.mi_Scramble1.Name = "mi_Scramble1";
-            this.mi_Scramble1.Size = new System.Drawing.Size(100, 26);
+            this.mi_Scramble1.Size = new System.Drawing.Size(80, 22);
             this.mi_Scramble1.Text = "1";
             this.mi_Scramble1.Click += new System.EventHandler(this.mi_Scramble1_Click);
             // 
             // mi_Scramble2
             // 
             this.mi_Scramble2.Name = "mi_Scramble2";
-            this.mi_Scramble2.Size = new System.Drawing.Size(100, 26);
+            this.mi_Scramble2.Size = new System.Drawing.Size(80, 22);
             this.mi_Scramble2.Text = "2";
             this.mi_Scramble2.Click += new System.EventHandler(this.mi_Scramble2_Click);
             // 
             // mi_Scramble3
             // 
             this.mi_Scramble3.Name = "mi_Scramble3";
-            this.mi_Scramble3.Size = new System.Drawing.Size(100, 26);
+            this.mi_Scramble3.Size = new System.Drawing.Size(80, 22);
             this.mi_Scramble3.Text = "3";
             this.mi_Scramble3.Click += new System.EventHandler(this.mi_Scramble3_Click);
             // 
             // mi_Scramble4
             // 
             this.mi_Scramble4.Name = "mi_Scramble4";
-            this.mi_Scramble4.Size = new System.Drawing.Size(100, 26);
+            this.mi_Scramble4.Size = new System.Drawing.Size(80, 22);
             this.mi_Scramble4.Text = "4";
             this.mi_Scramble4.Click += new System.EventHandler(this.mi_Scramble4_Click);
             // 
             // mi_Scramble5
             // 
             this.mi_Scramble5.Name = "mi_Scramble5";
-            this.mi_Scramble5.Size = new System.Drawing.Size(100, 26);
+            this.mi_Scramble5.Size = new System.Drawing.Size(80, 22);
             this.mi_Scramble5.Text = "5";
             this.mi_Scramble5.Click += new System.EventHandler(this.mi_Scramble5_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
             // 
             // mi_Undo
             // 
             this.mi_Undo.Name = "mi_Undo";
             this.mi_Undo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.mi_Undo.Size = new System.Drawing.Size(205, 26);
+            this.mi_Undo.Size = new System.Drawing.Size(165, 22);
             this.mi_Undo.Text = "Undo";
             this.mi_Undo.Click += new System.EventHandler(this.mi_Undo_Click);
             // 
@@ -1405,21 +1404,21 @@ namespace _3dedit
             // 
             this.mi_Redo.Name = "mi_Redo";
             this.mi_Redo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.mi_Redo.Size = new System.Drawing.Size(205, 26);
+            this.mi_Redo.Size = new System.Drawing.Size(165, 22);
             this.mi_Redo.Text = "Redo";
             this.mi_Redo.Click += new System.EventHandler(this.mi_Redo_Click);
             // 
             // mi_FullUndo
             // 
             this.mi_FullUndo.Name = "mi_FullUndo";
-            this.mi_FullUndo.Size = new System.Drawing.Size(205, 26);
+            this.mi_FullUndo.Size = new System.Drawing.Size(165, 22);
             this.mi_FullUndo.Text = "Full Undo";
             this.mi_FullUndo.Click += new System.EventHandler(this.mi_FullUndo_Click);
             // 
             // mi_FullRedo
             // 
             this.mi_FullRedo.Name = "mi_FullRedo";
-            this.mi_FullRedo.Size = new System.Drawing.Size(205, 26);
+            this.mi_FullRedo.Size = new System.Drawing.Size(165, 22);
             this.mi_FullRedo.Text = "Full Redo";
             this.mi_FullRedo.Click += new System.EventHandler(this.mi_FullRedo_Click);
             // 
@@ -1427,31 +1426,31 @@ namespace _3dedit
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(162, 6);
             // 
             // recalculateToolStripMenuItem
             // 
             this.recalculateToolStripMenuItem.Name = "recalculateToolStripMenuItem";
-            this.recalculateToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.recalculateToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.recalculateToolStripMenuItem.Text = "Recalculate";
             this.recalculateToolStripMenuItem.Click += new System.EventHandler(this.recalculateToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
             // 
             // editKeybinds
             // 
             this.editKeybinds.Name = "editKeybinds";
-            this.editKeybinds.Size = new System.Drawing.Size(205, 26);
+            this.editKeybinds.Size = new System.Drawing.Size(165, 22);
             this.editKeybinds.Text = "Edit Keybinds";
             this.editKeybinds.Click += new System.EventHandler(this.editKeybinds_Click);
             // 
@@ -1468,27 +1467,27 @@ namespace _3dedit
             this.mi_PuzzleSize4,
             this.mi_PuzzleSize5});
             this.puzzleToolStripMenuItem.Name = "puzzleToolStripMenuItem";
-            this.puzzleToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.puzzleToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.puzzleToolStripMenuItem.Text = "Puzzle";
             // 
             // mi_Puzzle4D
             // 
             this.mi_Puzzle4D.Name = "mi_Puzzle4D";
-            this.mi_Puzzle4D.Size = new System.Drawing.Size(224, 26);
+            this.mi_Puzzle4D.Size = new System.Drawing.Size(103, 22);
             this.mi_Puzzle4D.Text = "4D";
             this.mi_Puzzle4D.Click += new System.EventHandler(this.mi_Puzzle4D_Click);
             // 
             // mi_Puzzle5D
             // 
             this.mi_Puzzle5D.Name = "mi_Puzzle5D";
-            this.mi_Puzzle5D.Size = new System.Drawing.Size(224, 26);
+            this.mi_Puzzle5D.Size = new System.Drawing.Size(103, 22);
             this.mi_Puzzle5D.Text = "5D";
             this.mi_Puzzle5D.Click += new System.EventHandler(this.mi_Puzzle5D_Click);
             // 
             // mi_Puzzle6D
             // 
             this.mi_Puzzle6D.Name = "mi_Puzzle6D";
-            this.mi_Puzzle6D.Size = new System.Drawing.Size(224, 26);
+            this.mi_Puzzle6D.Size = new System.Drawing.Size(103, 22);
             this.mi_Puzzle6D.Text = "6D";
             this.mi_Puzzle6D.Click += new System.EventHandler(this.mi_Puzzle6D_Click);
             // 
@@ -1497,35 +1496,42 @@ namespace _3dedit
             this.mi_Puzzle7D.Checked = true;
             this.mi_Puzzle7D.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mi_Puzzle7D.Name = "mi_Puzzle7D";
-            this.mi_Puzzle7D.Size = new System.Drawing.Size(224, 26);
+            this.mi_Puzzle7D.Size = new System.Drawing.Size(103, 22);
             this.mi_Puzzle7D.Text = "7D";
             this.mi_Puzzle7D.Click += new System.EventHandler(this.mi_Puzzle7D_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(100, 6);
+            // 
+            // mi_PuzzleSize2
+            // 
+            this.mi_PuzzleSize2.Name = "mi_PuzzleSize2";
+            this.mi_PuzzleSize2.Size = new System.Drawing.Size(103, 22);
+            this.mi_PuzzleSize2.Text = "Size 2";
+            this.mi_PuzzleSize2.Click += new System.EventHandler(this.mi_PuzzleSize2_Click);
             // 
             // mi_PuzzleSize3
             // 
             this.mi_PuzzleSize3.Checked = true;
             this.mi_PuzzleSize3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mi_PuzzleSize3.Name = "mi_PuzzleSize3";
-            this.mi_PuzzleSize3.Size = new System.Drawing.Size(224, 26);
+            this.mi_PuzzleSize3.Size = new System.Drawing.Size(103, 22);
             this.mi_PuzzleSize3.Text = "Size 3";
             this.mi_PuzzleSize3.Click += new System.EventHandler(this.mi_PuzzleSize3_Click);
             // 
             // mi_PuzzleSize4
             // 
             this.mi_PuzzleSize4.Name = "mi_PuzzleSize4";
-            this.mi_PuzzleSize4.Size = new System.Drawing.Size(224, 26);
+            this.mi_PuzzleSize4.Size = new System.Drawing.Size(103, 22);
             this.mi_PuzzleSize4.Text = "Size 4";
             this.mi_PuzzleSize4.Click += new System.EventHandler(this.mi_PuzzleSize4_Click);
             // 
             // mi_PuzzleSize5
             // 
             this.mi_PuzzleSize5.Name = "mi_PuzzleSize5";
-            this.mi_PuzzleSize5.Size = new System.Drawing.Size(224, 26);
+            this.mi_PuzzleSize5.Size = new System.Drawing.Size(103, 22);
             this.mi_PuzzleSize5.Text = "Size 5";
             this.mi_PuzzleSize5.Click += new System.EventHandler(this.mi_PuzzleSize5_Click);
             // 
@@ -1542,48 +1548,48 @@ namespace _3dedit
             this.undoExtraTurnsToolStripMenuItem,
             this.commutatorToolStripMenuItem});
             this.macroToolStripMenuItem.Name = "macroToolStripMenuItem";
-            this.macroToolStripMenuItem.Size = new System.Drawing.Size(71, 24);
+            this.macroToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.macroToolStripMenuItem.Text = "Macros";
             // 
             // mi_StartRecordig
             // 
             this.mi_StartRecordig.Name = "mi_StartRecordig";
             this.mi_StartRecordig.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.mi_StartRecordig.Size = new System.Drawing.Size(279, 26);
+            this.mi_StartRecordig.Size = new System.Drawing.Size(222, 22);
             this.mi_StartRecordig.Text = "Start/Stop Recordig";
             this.mi_StartRecordig.Click += new System.EventHandler(this.mi_StartRecordig_Click);
             // 
             // loadMacroFileToolStripMenuItem
             // 
             this.loadMacroFileToolStripMenuItem.Name = "loadMacroFileToolStripMenuItem";
-            this.loadMacroFileToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.loadMacroFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.loadMacroFileToolStripMenuItem.Text = "Load Macro File";
             this.loadMacroFileToolStripMenuItem.Click += new System.EventHandler(this.loadMacroFileToolStripMenuItem_Click);
             // 
             // saveMacroFileToolStripMenuItem
             // 
             this.saveMacroFileToolStripMenuItem.Name = "saveMacroFileToolStripMenuItem";
-            this.saveMacroFileToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.saveMacroFileToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.saveMacroFileToolStripMenuItem.Text = "Save Macro File";
             this.saveMacroFileToolStripMenuItem.Click += new System.EventHandler(this.saveMacroFileToolStripMenuItem_Click);
             // 
             // saveMacroFileAsToolStripMenuItem
             // 
             this.saveMacroFileAsToolStripMenuItem.Name = "saveMacroFileAsToolStripMenuItem";
-            this.saveMacroFileAsToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.saveMacroFileAsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.saveMacroFileAsToolStripMenuItem.Text = "Save Macro File As...";
             this.saveMacroFileAsToolStripMenuItem.Click += new System.EventHandler(this.saveMacroFileAsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(276, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(219, 6);
             // 
             // startExtraTurnsToolStripMenuItem
             // 
             this.startExtraTurnsToolStripMenuItem.Name = "startExtraTurnsToolStripMenuItem";
             this.startExtraTurnsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.startExtraTurnsToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.startExtraTurnsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.startExtraTurnsToolStripMenuItem.Text = "Start Extra Turns";
             this.startExtraTurnsToolStripMenuItem.Click += new System.EventHandler(this.startExtraTurnsToolStripMenuItem_Click);
             // 
@@ -1591,7 +1597,7 @@ namespace _3dedit
             // 
             this.stopExtraTurnsToolStripMenuItem.Name = "stopExtraTurnsToolStripMenuItem";
             this.stopExtraTurnsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.stopExtraTurnsToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.stopExtraTurnsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.stopExtraTurnsToolStripMenuItem.Text = "Stop Extra Turns";
             this.stopExtraTurnsToolStripMenuItem.Click += new System.EventHandler(this.stopExtraTurnsToolStripMenuItem_Click);
             // 
@@ -1599,7 +1605,7 @@ namespace _3dedit
             // 
             this.undoExtraTurnsToolStripMenuItem.Name = "undoExtraTurnsToolStripMenuItem";
             this.undoExtraTurnsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.undoExtraTurnsToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.undoExtraTurnsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.undoExtraTurnsToolStripMenuItem.Text = "Unwind Extra Turns";
             this.undoExtraTurnsToolStripMenuItem.Click += new System.EventHandler(this.undoExtraTurnsToolStripMenuItem_Click);
             // 
@@ -1607,7 +1613,7 @@ namespace _3dedit
             // 
             this.commutatorToolStripMenuItem.Name = "commutatorToolStripMenuItem";
             this.commutatorToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.commutatorToolStripMenuItem.Size = new System.Drawing.Size(279, 26);
+            this.commutatorToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.commutatorToolStripMenuItem.Text = "Commutator";
             this.commutatorToolStripMenuItem.Click += new System.EventHandler(this.commutatorToolStripMenuItem_Click);
             // 
@@ -1616,26 +1622,19 @@ namespace _3dedit
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // mi_PuzzleSize2
-            // 
-            this.mi_PuzzleSize2.Name = "mi_PuzzleSize2";
-            this.mi_PuzzleSize2.Size = new System.Drawing.Size(224, 26);
-            this.mi_PuzzleSize2.Text = "Size 2";
-            this.mi_PuzzleSize2.Click += new System.EventHandler(this.mi_PuzzleSize2_Click);
-            // 
             // Form1
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(997, 684);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.splitter1);
