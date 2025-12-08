@@ -47,6 +47,8 @@ namespace _3dedit
         private ToolStripMenuItem mi_PuzzleSize3;
         private ToolStripMenuItem mi_PuzzleSize4;
         private ToolStripMenuItem mi_PuzzleSize5;
+        private ToolStripMenuItem mi_PuzzleSize6;
+        private ToolStripMenuItem mi_PuzzleSize7;
         private ToolStripMenuItem mi_FullUndo;
         private ToolStripMenuItem mi_FullScramble;
         private ToolStripMenuItem mi_ScrambleNTurns;
@@ -325,6 +327,8 @@ namespace _3dedit
             this.mi_PuzzleSize3 = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_PuzzleSize4 = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_PuzzleSize5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi_PuzzleSize6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mi_PuzzleSize7 = new System.Windows.Forms.ToolStripMenuItem();
             this.macroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mi_StartRecordig = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMacroFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1465,7 +1469,9 @@ namespace _3dedit
             this.mi_PuzzleSize2,
             this.mi_PuzzleSize3,
             this.mi_PuzzleSize4,
-            this.mi_PuzzleSize5});
+            this.mi_PuzzleSize5,
+            this.mi_PuzzleSize6,
+            this.mi_PuzzleSize7});
             this.puzzleToolStripMenuItem.Name = "puzzleToolStripMenuItem";
             this.puzzleToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.puzzleToolStripMenuItem.Text = "Puzzle";
@@ -1534,6 +1540,20 @@ namespace _3dedit
             this.mi_PuzzleSize5.Size = new System.Drawing.Size(103, 22);
             this.mi_PuzzleSize5.Text = "Size 5";
             this.mi_PuzzleSize5.Click += new System.EventHandler(this.mi_PuzzleSize5_Click);
+            // 
+            // mi_PuzzleSize6
+            // 
+            this.mi_PuzzleSize6.Name = "mi_PuzzleSize6";
+            this.mi_PuzzleSize6.Size = new System.Drawing.Size(103, 22);
+            this.mi_PuzzleSize6.Text = "Size 6";
+            this.mi_PuzzleSize6.Click += new System.EventHandler(this.mi_PuzzleSize6_Click);
+            // 
+            // mi_PuzzleSize7
+            // 
+            this.mi_PuzzleSize7.Name = "mi_PuzzleSize7";
+            this.mi_PuzzleSize7.Size = new System.Drawing.Size(103, 22);
+            this.mi_PuzzleSize7.Text = "Size 7";
+            this.mi_PuzzleSize7.Click += new System.EventHandler(this.mi_PuzzleSize7_Click);
             // 
             // macroToolStripMenuItem
             // 
@@ -1684,6 +1704,8 @@ namespace _3dedit
             if(mi_PuzzleSize3.Checked) return 3;
             if(mi_PuzzleSize4.Checked) return 4;
             if(mi_PuzzleSize5.Checked) return 5;
+            if(mi_PuzzleSize6.Checked) return 6;
+            if(mi_PuzzleSize7.Checked) return 7;
             return 3;
         }
         void SetSize(int n)
@@ -1692,6 +1714,8 @@ namespace _3dedit
             mi_PuzzleSize3.Checked=(n==3);
             mi_PuzzleSize4.Checked=(n==4);
             mi_PuzzleSize5.Checked=(n==5);
+            mi_PuzzleSize6.Checked = (n == 6);
+            mi_PuzzleSize7.Checked = (n == 7);
         }
 
         Cube7D Cube;
@@ -2177,6 +2201,20 @@ namespace _3dedit
             SetSize(5);
             NewScene();
         }
+
+        private void mi_PuzzleSize6_Click(object sender, EventArgs e)
+        {
+            SetSize(6);
+            NewScene();
+        }
+
+        private void mi_PuzzleSize7_Click(object sender, EventArgs e)
+        {
+            SetSize(7);
+            NewScene();
+        }
+        
+        
 
         private void mi_Reset_Click(object sender,EventArgs e) {
             NewScene();
