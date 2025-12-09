@@ -20,7 +20,7 @@ namespace _3dedit
 	/// Summary description for Form1.
 	/// </summary>
     public class Form1:System.Windows.Forms.Form {
-        public string VERSION = "v0.8.2";
+        public string VERSION = "v0.8.4";
 
 		private System.Windows.Forms.Splitter splitter1;
 		private System.Windows.Forms.Panel panel1;
